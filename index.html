@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ines Nix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --pink:#c95c7e;--pink-light:#f5d6e2;--pink-pale:#fdf0f5;--pink-dark:#9b3a5c;
+  --blue:#4a7ab5;--blue-light:#d6e4f5;--blue-pale:#f0f5fc;--blue-dark:#2f5580;
+  --green:#5a9072;--green-light:#d0ebdc;--green-pale:#f0f9f3;--green-dark:#366349;
+  --nav-bg:#fefcfd;--footer-bg:#1c2d3f;--footer-text:#e8f0f8;
+  --text:#2a2a2a;--text-soft:#555;--radius:14px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:58px;background:var(--nav-bg);border-bottom:1.5px solid #ede8f0;backdrop-filter:blur(8px);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--pink-dark);text-decoration:none;letter-spacing:0.01em;cursor:pointer;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{text-decoration:none;font-size:0.9rem;font-weight:500;color:var(--blue-dark);transition:color 0.2s;letter-spacing:0.02em;}
+.nav-links a:hover{color:var(--pink);}
+
+/* PAGE VIEWS */
+#privacy-page,#terms-page{display:none;}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(145deg,#fbe8f0 0%,#e8f2fb 50%,#e6f4ed 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 3rem 3rem;position:relative;overflow:hidden;text-align:center;}
+.hero-card{background:rgba(255,255,255,.88);border-radius:20px;padding:2.5rem 3rem;max-width:620px;width:100%;position:relative;z-index:2;box-shadow:0 8px 40px rgba(74,122,181,.10),0 2px 8px rgba(201,92,126,.07);backdrop-filter:blur(10px);}
+.hero-card h1{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--pink-dark);margin-bottom:1rem;}
+.hero-card p{font-size:1rem;line-height:1.85;color:var(--text-soft);margin-bottom:1.6rem;}
+.email-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border-radius:99px;background:var(--blue-dark);color:#fff;text-decoration:none;font-size:.92rem;font-weight:500;transition:background .2s,transform .15s;letter-spacing:.02em;}
+.email-btn:hover{background:var(--pink-dark);transform:translateY(-2px);}
+
+/* SHARED */
+section{padding:5rem 3rem;}
+section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:2.5rem;}
+
+/* EDUCATION */
+.sec-edu{background:var(--blue-pale);}
+.sec-edu h2{color:var(--blue-dark);}
+
+/* EXPERIENCE */
+.sec-exp{background:var(--pink-pale);}
+.sec-exp h2{color:var(--pink-dark);}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2.4rem;max-width:860px;}
+.timeline::before{content:'';position:absolute;left:.5rem;top:0;bottom:0;width:2px;border-radius:2px;}
+.sec-edu .timeline::before{background:var(--blue-light);}
+.sec-exp .timeline::before{background:var(--pink-light);}
+.sec-lead .timeline::before{background:var(--blue-light);}
+.tl-item{position:relative;margin-bottom:1.5rem;}
+.tl-dot{position:absolute;left:-1.95rem;top:1.3rem;width:12px;height:12px;border-radius:50%;}
+.sec-edu .tl-dot{background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 2px var(--blue);}
+.sec-exp .tl-dot{background:var(--pink);border:2px solid #fff;box-shadow:0 0 0 2px var(--pink);}
+.sec-lead .tl-dot{background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 2px var(--blue);}
+.tl-card{border-radius:var(--radius);padding:1.4rem 1.8rem;}
+.sec-edu .tl-card{background:#fff;border:1.5px solid var(--blue-light);color:var(--blue-dark);}
+.sec-exp .tl-card{background:#fff;border:1.5px solid var(--pink-light);color:var(--pink-dark);}
+.sec-lead .tl-card{background:#fff;border:1.5px solid var(--blue-light);color:var(--blue-dark);}
+.tl-card h3{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;margin-bottom:.75rem;}
+.tl-card .meta{font-size:.82rem;opacity:.7;margin-bottom:.6rem;font-weight:500;letter-spacing:.03em;}
+.tl-card ul{list-style:disc;padding-left:1.2rem;}
+.tl-card li{font-size:.91rem;line-height:1.7;margin-bottom:.35rem;color:var(--text);}
+
+/* PROJECTS */
+.sec-proj{background:var(--green-pale);}
+.sec-proj h2{color:var(--green-dark);text-align:center;}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1060px;margin:0 auto;}
+.proj-card{background:#fff;border:1.5px solid var(--green-light);border-radius:var(--radius);padding:1.4rem 1.2rem;transition:transform .2s,box-shadow .2s;cursor:pointer;}
+.proj-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(90,144,114,.16);}
+.proj-card h3{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--green-dark);margin-bottom:.5rem;}
+.proj-card .tag{display:inline-block;font-size:.72rem;font-weight:500;letter-spacing:.04em;background:var(--green-light);color:var(--green-dark);border-radius:99px;padding:.18rem .6rem;margin-bottom:.55rem;}
+.proj-card p{font-size:.86rem;color:var(--text-soft);line-height:1.65;}
+.proj-card .expand-hint{font-size:.75rem;color:var(--green);margin-top:.7rem;font-style:italic;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-box{background:#fff;border-radius:20px;padding:2.5rem;max-width:680px;width:90%;max-height:85vh;overflow-y:auto;transform:translateY(20px);transition:transform .25s;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.18);}
+.modal-overlay.open .modal-box{transform:translateY(0);}
+.modal-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--green-dark);margin-bottom:.4rem;}
+.modal-box .modal-meta{font-size:.82rem;color:var(--text-soft);margin-bottom:1rem;font-weight:500;}
+.modal-box .tag{display:inline-block;font-size:.75rem;font-weight:500;background:var(--green-light);color:var(--green-dark);border-radius:99px;padding:.2rem .7rem;margin:.15rem .15rem .7rem 0;}
+.modal-box p{font-size:.93rem;line-height:1.8;color:var(--text-soft);margin-bottom:.8rem;}
+.modal-box ul{list-style:disc;padding-left:1.3rem;margin-bottom:.8rem;}
+.modal-box li{font-size:.92rem;line-height:1.75;margin-bottom:.3rem;color:var(--text);}
+.modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-soft);line-height:1;}
+.modal-close:hover{color:var(--pink);}
+
+/* LEADERSHIP */
+.sec-lead{background:var(--blue-pale);}
+.sec-lead h2{color:var(--blue-dark);}
+
+/* SKILLS */
+.sec-skills{background:var(--pink-pale);}
+.sec-skills h2{color:var(--pink-dark);}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:860px;}
+.skill-block h4{font-family:'Playfair Display',serif;font-size:.93rem;font-weight:700;color:var(--pink-dark);margin-bottom:.55rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+.skill-tag{font-size:.78rem;font-weight:500;letter-spacing:.03em;background:#fff;border:1.5px solid var(--pink-light);color:var(--text);border-radius:99px;padding:.2rem .65rem;}
+.interest-tag{background:#fff;border:1.5px solid var(--green-light);color:var(--green-dark);}
+
+/* CONTACT */
+.sec-contact{background:linear-gradient(135deg,var(--pink-pale) 0%,var(--blue-pale) 100%);display:flex;flex-direction:column;align-items:center;text-align:center;}
+.sec-contact h2{color:var(--blue-dark);}
+.contact-form{max-width:520px;width:100%;text-align:left;}
+.form-group{margin-bottom:1.1rem;}
+.form-group label{display:block;font-weight:500;font-size:.88rem;color:var(--blue-dark);margin-bottom:.35rem;letter-spacing:.03em;}
+.form-group input,.form-group textarea{width:100%;padding:.7rem 1rem;border:1.5px solid var(--blue-light);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.95rem;background:#fff;color:var(--text);outline:none;transition:border-color .2s;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--blue);}
+.form-group textarea{resize:vertical;min-height:110px;}
+.submit-btn{display:block;margin:0 auto;background:var(--blue-dark);color:#fff;border:none;border-radius:99px;padding:.75rem 2.2rem;font-family:'DM Sans',sans-serif;font-size:.95rem;cursor:pointer;font-weight:500;transition:background .2s,transform .15s;letter-spacing:.02em;}
+.submit-btn:hover{background:var(--pink-dark);transform:translateY(-2px);}
+.form-ok{margin-top:1rem;color:var(--green-dark);font-weight:500;display:none;text-align:center;}
+
+/* FOOTER */
+footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:.85rem;opacity:.8;}
+.footer-links{display:flex;gap:1.8rem;}
+.footer-links a{color:var(--footer-text);text-decoration:none;font-size:.85rem;opacity:.75;transition:opacity .2s;cursor:pointer;letter-spacing:.02em;}
+.footer-links a:hover{opacity:1;}
+.footer-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;opacity:.9;}
+
+/* LEGAL PAGES */
+#privacy-page,#terms-page{background:linear-gradient(160deg,var(--green-pale) 0%,#fff 40%);min-height:100vh;}
+.legal-page{padding:100px 2rem 5rem;max-width:760px;margin:0 auto;min-height:100vh;}
+.legal-page .page-title{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--green-dark);margin-bottom:.4rem;}
+.legal-page .updated{font-size:.85rem;color:var(--text-soft);margin-bottom:2.5rem;}
+.legal-page h2{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--pink-dark);margin-top:2rem;margin-bottom:.6rem;}
+.legal-page p{font-size:.95rem;line-height:1.8;color:var(--text-soft);margin-bottom:.8rem;}
+.legal-page a{color:var(--blue);text-decoration:underline;}
+.back-btn{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:2rem;font-size:.88rem;font-weight:500;color:var(--green-dark);cursor:pointer;background:var(--green-light);border:none;border-radius:99px;padding:.4rem 1rem;transition:background .2s;}
+.back-btn:hover{background:var(--green);}
+
+@media(max-width:768px){.proj-grid{grid-template-columns:1fr 1fr;}nav{padding:0 1.2rem;}.nav-links{gap:1rem;}.hero{padding:80px 1.5rem 3rem;}section{padding:3rem 1.5rem;}.skills-grid{grid-template-columns:1fr;}footer{flex-direction:column;text-align:center;}.footer-links{justify-content:center;}}
+@media(max-width:480px){.proj-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" onclick="showPage('main')" href="#">Ines Nix</a>
+  <ul class="nav-links">
+    <li><a href="#education" onclick="showPage('main')">Education</a></li>
+    <li><a href="#experience" onclick="showPage('main')">Experience</a></li>
+    <li><a href="#projects" onclick="showPage('main')">Projects</a></li>
+    <li><a href="#leadership" onclick="showPage('main')">Leadership</a></li>
+    <li><a href="#contact" onclick="showPage('main')">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModalBtn()">×</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ═══════════ MAIN PAGE ═══════════ -->
+<div id="main-page">
+
+<section class="hero" id="home">
+  <div class="hero-card">
+    <h1>Ines Nix</h1>
+    <p>Hello! I'm Ines Nix, a computer engineering undergraduate at Washington University in St. Louis. Over the years, I’ve explored a variety of tech fields, including research and machine learning, data science, robotics, and computational biology, and I’m always eager to learn new skills and take on exciting challenges.</p>
+    <a href="mailto:inessnix@gmail.com" class="email-btn">💌</a>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="sec-edu" id="education">
+  <h2>Education</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="meta">Expected December 2026 · St. Louis, MO</div>
+        <h3>Washington University in St. Louis — B.S. Computer Engineering, Minor in Environmental Studies</h3>
+        <ul>
+          <li>Dean's List for Academic Excellence</li>
+          <li><strong>Coursework:</strong> Embedded Computing Systems, Computer Architecture, Digital Logic &amp; Computer Design, Computer Security, Electrical &amp; Systems Engineering, Data Structures &amp; Algorithms</li>
+          <li><strong>Activities:</strong> Hack WashU, Alpha Phi Omega Service Fraternity, Washington University Green Ambassadors, Run Club</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="meta">January – May 2026 · Dublin, Ireland</div>
+        <h3>University College Dublin — Study Abroad, College of Engineering &amp; Architecture</h3>
+        <ul>
+          <li><strong>Coursework:</strong> Statistics &amp; Probability, Biosystems Engineering Design, Electronic Circuits, Cognitive Science</li>
+          <li><strong>Activities:</strong> Math Society, Windsurfing Club, Trampoline Club, International Students Society</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec-exp" id="experience">
+  <h2>Experience</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="meta">January 2026 – Present · Dublin, Ireland</div>
+        <h3>University College Dublin — Computational Biology Research Intern</h3>
+        <ul>
+          <li>Conduct computational protein stability analysis using FoldX and MutateX on a high-performance computing (HPC) cluster to evaluate the effects of point mutations on protein structure.</li>
+          <li>Analyze mutation data using R for visualization and statistical interpretation, and develop an interactive web interface using JavaScript and HTML to enable biologists to perform site-directed mutagenesis experiments.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="meta">May – August 2024 · Highlands, NC</div>
+        <h3>Highlands Biological Station — Naturalist</h3>
+        <ul>
+          <li>Provided daily care for native wildlife including salamanders, turtles, crawfish, and snakes, maintaining health logs and monitoring behavioral indicators of animal wellbeing.</li>
+          <li>Delivered educational programs on owl biology, salamander ecology, and wildlife eyeshine for audiences ranging from school groups to adults</li>
+          <li>Collaborated with station biologists on field data collection, contributing to ongoing long-term monitoring projects in the southern Appalachian highlands ecosystem.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="meta">February – May 2024 · St. Louis, MO</div>
+        <h3>Mathnasium — Mathematics Instructor</h3>
+        <ul>
+          <li>Provided math tutoring to students from kindergarten through high school, covering topics from basic arithmetic through pre-calculus and standardized test preparation.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="meta">February 2021 – March 2022 · Mount Kisco, NY</div>
+        <h3>Computer Adventures — Coding Instructor</h3>
+        <ul>
+          <li>Designed and taught introductory computer science courses covering concepts such as sequencing, loops, and conditional logic using Scratch.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="meta">August 2021 · Brunswick, Georgia</div>
+        <h3>Okefenokee Swamp Park — Wildlife Conservation Intern</h3>
+        <ul>
+          <li>Collaborated on field research regarding alligator population dynamics within the swamp ecosystem, contributing to ongoing wildlife conservation monitoring efforts.</li>
+          <li>Facilitated the design and implementation of interpretive educational talks for park visitors, communicating conservation science to a broad public audience.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="meta">August 2021 · Hilliard, Florida</div>
+        <h3>Traders Hill Farm — Sustainable Agriculture Intern</h3>
+        <ul>
+          <li>Assisted with the care and harvesting of Tilapia within the farm's closed-loop aquaponic system, supporting sustainable farming techniques that minimize waste and resource use.</li>
+          <li>Analyzed Datil pepper growth data to identify optimization strategies for yield improvement.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec-proj" id="projects">
+  <h2>Projects</h2>
+  <p style="text-align:center;color:var(--text-soft);font-size:.88rem;margin-top:-1.5rem;margin-bottom:2rem;"></p>
+  <div class="proj-grid">
+
+    <div class="proj-card" onclick="openModal('picar')">
+      <div class="tag">Python · Raspberry Pi · OpenCV · PID</div>
+      <h3>Autonomous Vehicle Control System</h3>
+      <p>Raspberry Pi–powered car with real-time image processing, PID speed control, obstacle detection, and autonomous path following.</p>
+      <div class="expand-hint">↗ Click to expand</div>
+    </div>
+
+    <div class="proj-card" onclick="openModal('phishing')">
+      <div class="tag">Python · ML · scikit-learn · HTML/CSS</div>
+      <h3>Phishing Email Detection System</h3>
+      <p>Hybrid rule-based + machine learning pipeline achieving 82% accuracy, deployed as an interactive web interface.</p>
+      <div class="expand-hint">↗ Click to expand</div>
+    </div>
+
+    <div class="proj-card" onclick="openModal('climate')">
+      <div class="tag">Python · Multi-agent AI · HTML/CSS</div>
+      <h3>Smart Climate Decision System</h3>
+      <p>3rd place at AI Hackathon (350+ participants). Multi-agent system optimizing climate strategies with real-time data.</p>
+      <div class="expand-hint">↗ Click to expand</div>
+    </div>
+
+    <div class="proj-card" onclick="openModal('mapee')">
+      <div class="tag">Arduino · Python Flask · ESP32-CAM · C</div>
+      <h3>Motion-Activated Photobooth</h3>
+      <p>Embedded photobooth with fire safety override, PIR motion detection, countdown, and a live web gallery dashboard.</p>
+      <div class="expand-hint">↗ Click to expand</div>
+    </div>
+
+    <div class="proj-card" onclick="openModal('covid')">
+      <div class="tag">MATLAB</div>
+      <h3>COVID-19 SIRD Transmission Modeling</h3>
+      <p>Linear dynamical system modeling of COVID-19 waves using fmincon-optimized transition matrices.</p>
+      <div class="expand-hint">↗ Click to expand</div>
+    </div>
+
+    <div class="proj-card" onclick="openModal('mnist')">
+      <div class="tag">MATLAB</div>
+      <h3>Handwritten Digit Classifier</h3>
+      <p>Multi-class classifier on the MNIST dataset achieving 81.9% accuracy using cosine similarity and Boolean feature bounds.</p>
+      <div class="expand-hint">↗ Click to expand</div>
+    </div>
+
+    <div class="proj-card" onclick="openModal('flood')">
+      <div class="tag">MATLAB · Hydrology · Statistical Modeling</div>
+      <h3>Flood Risk Analysis — St. Louis</h3>
+      <p>Quantitative analysis of precipitation, temperature, PET, soil moisture, and streamflow drivers of urban flooding.</p>
+      <div class="expand-hint">↗ Click to expand</div>
+    </div>
+
+    <div class="proj-card" onclick="openModal('gis')">
+      <div class="tag">ArcGIS Pro</div>
+      <h3>Green Paths: GIS Walkway Mapping</h3>
+      <p>Environmental vulnerability index and optimal pedestrian pathway generation for Greene County, MO using ArcGIS Pro.</p>
+      <div class="expand-hint">↗ Click to expand</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="sec-lead" id="leadership">
+  <h2>Leadership</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="meta">August 2024 – Present</div>
+        <h3>Hack WashU — Vice President</h3>
+        <ul>
+          <li>Serve on the executive team of WashU's hackathon, which draws 300+ participants annually from universities across the region.</li>
+          <li>Coordinate event logistics including venue, sponsor relations, and schedule, and evaluate submitted projects across technical categories.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="meta">August 2023 – Present</div>
+        <h3>Alpha Phi Omega, Service Fraternity — Animals Chair &amp; Fundraising Chair</h3>
+        <ul>
+          <li>Collaborate with local animal welfare organizations to organize community service events and coordinate volunteer initiatives across the fraternity.</li>
+          <li>Lead the planning and execution of fundraising events to support fraternity service projects and chapter operations.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec-skills" id="skills">
+  <h2>Skills &amp; Interests</h2>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Programming Languages</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span><span class="skill-tag">C</span><span class="skill-tag">C++</span>
+        <span class="skill-tag">Java</span><span class="skill-tag">MATLAB</span>
+        <span class="skill-tag">R</span><span class="skill-tag">SystemVerilog</span>
+        <span class="skill-tag">HTML/CSS</span><span class="skill-tag">Assembly (RISC-V, ARM, x86-64)</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h4>Tools &amp; Platforms</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span><span class="skill-tag">Docker</span>
+        <span class="skill-tag">VMware</span><span class="skill-tag">KiCad</span>
+        <span class="skill-tag">NI Multisim</span><span class="skill-tag">PSpice</span>
+        <span class="skill-tag">Wireshark</span><span class="skill-tag">ESRI ArcGIS Pro</span>
+        <span class="skill-tag">OpenCV</span><span class="skill-tag">scikit-learn</span>
+        <span class="skill-tag">FoldX / MutateX</span>
+        <span class="skill-tag">LTspice</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h4>Lab Equipment</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Oscilloscope</span><span class="skill-tag">Digital Multimeter</span>
+        <span class="skill-tag">DC Power Supply</span><span class="skill-tag">Function Generator</span>
+        <span class="skill-tag">Breadboard Prototyping</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h4>Interests</h4>
+      <div class="skill-tags">
+        <span class="skill-tag interest-tag">🏄 Windsurfing</span>
+        <span class="skill-tag interest-tag">🥾 Hiking</span>
+        <span class="skill-tag interest-tag">🎸 Guitar</span>
+        <span class="skill-tag interest-tag">🍵 Kombucha Fermentation</span>
+        <span class="skill-tag interest-tag">🎹 Piano</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec-contact" id="contact">
+  <h2>Get in touch</h2>
+  <form class="contact-form" action="https://formspree.io/f/mdappeeg" method="POST" onsubmit="handleSubmit(event)">
+    <div class="form-group"><label for="cname">Name</label><input type="text" name="name" id="cname" placeholder="Your name" required/></div>
+    <div class="form-group"><label for="cemail">Email</label><input type="email" name="email" id="cemail" placeholder="your@email.com" required/></div>
+    <div class="form-group"><label for="cmsg">Message</label><textarea name="message" id="cmsg" placeholder="Say hello..." required></textarea></div>
+    <button type="submit" class="submit-btn">Send message </button>
+    <p class="form-ok" id="formOk">Thanks! I'll get back to you soon 🌿</p>
+  </form>
+</section>
+
+</div><!-- end main-page -->
+
+<!-- ═══════════ PRIVACY PAGE ═══════════ -->
+<div id="privacy-page">
+  <div class="legal-page">
+    <button class="back-btn" onclick="showPage('main')">← Back to site</button>
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="updated">Last updated: April 2026</p>
+    <h2>Your Privacy</h2>
+    <p>Included below is my policy on how I handle any information I receive from you. You are not required to provide me with information in order to use this website. If you do not want me accessing and/or using your personal information as described herein, please do not provide me with any.</p>
+    <h2>Changes in My Policy</h2>
+    <p>I reserve the right to change this Privacy Policy at my discretion. If I decide to change the Privacy Policy, I will post those changes here. I encourage you to visit this area frequently to stay informed. If you continue to visit this website and use the services made available to you after such changes have been made, you hereby provide your consent to the changes.</p>
+    <h2>Copyright</h2>
+    <p>© Ines Nix 2026. All rights reserved. All content on this website, including text, graphics, images, and design, is the property of Ines Nix unless otherwise stated and is protected by United States copyright laws. No content may be reproduced, distributed, modified, or used without prior written permission.</p>
+    <h2>Digital Millennium Copyright Act (DMCA) Notice</h2>
+    <p>I own, protect, and enforce copyright in my own creative materials and respect the copyright properties of others. My site contains material of third parties and links to third-party sites. To the best of my knowledge, these materials do not infringe the copyrights of others. Upon receipt of notice of claimed infringement, I will respond expeditiously, including removing or disabling access to materials claimed to be infringing where applicable. Please address any notices to: <a href="/cdn-cgi/l/email-protection#355c5b50465b54515c5b505b5c4d755258545c591b565a58"><span class="__cf_email__" data-cfemail="d8b1b6bdabb6b9bcb1b6bdb6b1a098bfb5b9b1b4f6bbb7b5">[email&#160;protected]</span></a></p>
+    <h2>Restrictions on Use</h2>
+    <p>You agree not to use this website in any way that could damage, disable, or impair the site or interfere with any other party's use. You may not attempt to gain unauthorized access to any portion of the site or use it for any unlawful purpose. You may not reproduce, distribute, or create derivative works from any content without prior written permission.</p>
+    <h2>Information Collection</h2>
+    <p>I collect personally identifiable information (such as your name and email address) that you provide through the contact form, and use it only to respond to your inquiry. This data is processed by Formspree and GitHub. To request deletion, email <a href="/cdn-cgi/l/email-protection#85ecebe0f6ebe4e1ecebe0ebecfdc5e2e8e4ece9abe6eae8"><span class="__cf_email__" data-cfemail="452c2b20362b24212c2b202b2c3d052228242c296b262a28">[email&#160;protected]</span></a> with the subject line: <em>Opt-out</em>.</p>
+    <h2>Google Fonts</h2>
+    <p>This website uses Google Fonts, which may collect technical information such as your IP address when fonts are loaded. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> for details.</p>
+    <h2>Cookies</h2>
+    <p>I do not use cookies directly. Third-party providers including Formspree, GitHub, and Google may use cookies as part of their services. You can manage cookies through your browser settings.</p>
+    <h2>Security</h2>
+    <p>Contact form submissions are processed by Formspree using industry-standard security. No method of Internet transmission is completely secure, and I cannot guarantee absolute security of submitted information.</p>
+    <h2>Use of Information</h2>
+    <p>Email addresses submitted through the contact form are used solely to respond to the inquiry submitted.</p>
+    <h2>Opt-Out</h2>
+    <p>To stop receiving communications, email <a href="/cdn-cgi/l/email-protection#4f26212a3c212e2b26212a2126370f28222e2623612c2022"><span class="__cf_email__" data-cfemail="0960676c7a67686d60676c676071496e64686065276a6664">[email&#160;protected]</span></a> requesting removal. There may be a brief processing delay.</p>
+    <h2>Links to Other Websites</h2>
+    <p>This site may link to external websites. I am not responsible for their privacy practices. This Privacy Policy applies only to information collected through this website.</p>
+    <h2>Protection for Children</h2>
+    <p>I do not knowingly collect personal information from children under 13. If a child has submitted information, a parent or guardian may contact me at the address below to request deletion.</p>
+    <h2>Your Consent</h2>
+    <p>By using this site, you agree to this Privacy Policy. If you do not agree, please do not use the site or submit personal information.</p>
+    <h2>International Users</h2>
+    <p>If you access this site from outside the United States, your information may be processed in the U.S. by Formspree, GitHub, and Google. By using this site, you consent to this transfer.</p>
+    <h2>How to Contact Me</h2>
+    <p><a href="/cdn-cgi/l/email-protection#98f1f6fdebf6f9fcf1f6fdf6f1e0d8fff5f9f1f4b6fbf7f5"><span class="__cf_email__" data-cfemail="dab3b4bfa9b4bbbeb3b4bfb4b3a29abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a></p>
+  </div>
+</div>
+
+<!-- ═══════════ TERMS PAGE ═══════════ -->
+<div id="terms-page">
+  <div class="legal-page">
+    <button class="back-btn" onclick="showPage('main')">← Back to site</button>
+    <h1 class="page-title">Terms of Use</h1>
+    <p class="updated">Last updated: April 2026</p>
+    <h2>Acceptance of Terms</h2>
+    <p>By accessing this website, you agree to these Terms of Use. This is a personal portfolio maintained by Ines Nix for academic, professional, and informational purposes.</p>
+    <h2>Permitted Use</h2>
+    <p>You agree to use this website only for lawful purposes. Automated scraping, crawling, or bulk data collection without permission is prohibited.</p>
+    <h2>Intellectual Property</h2>
+    <p>All content — including text, images, project descriptions, and design — is the property of Ines Nix unless otherwise stated. You may not reproduce, distribute, or create derivative works without prior written permission.</p>
+    <h2>Academic &amp; Research Use</h2>
+    <p>Content related to academic coursework and research at Washington University in St. Louis and University College Dublin is presented for informational purposes only. Users are responsible for complying with their own institution's academic integrity guidelines.</p>
+    <h2>Attribution</h2>
+    <p>If referencing data or project work from this site in academic publications, please cite the appropriate scientific sources and acknowledge this website where relevant. For computational biology work, cite the underlying FoldX and MutateX publications.</p>
+    <h2>Data Accuracy</h2>
+    <p>No guarantees are made regarding the completeness or reliability of content. Users should independently verify information before relying on it.</p>
+    <h2>Contact Form</h2>
+    <p>The contact form is powered by Formspree. By submitting, you agree to <a href="https://formspree.io/legal/terms-of-service/" target="_blank" rel="noopener">Formspree's Terms of Service</a>.</p>
+    <h2>No Warranties</h2>
+    <p>This website is provided "as is" without warranties of any kind. I make no guarantees regarding functionality, availability, or accuracy.</p>
+    <h2>Limitation of Liability</h2>
+    <p>I am not liable for any damages resulting from use of this website or reliance on its content.</p>
+    <h2>Changes to These Terms</h2>
+    <p>I reserve the right to update these Terms at any time. Continued use after changes constitutes acceptance.</p>
+    <h2>Contact</h2>
+    <p><a href="/cdn-cgi/l/email-protection#88e1e6edfbe6e9ece1e6ede6e1f0c8efe5e9e1e4a6ebe7e5"><span class="__cf_email__" data-cfemail="0b62656e78656a6f62656e6562734b6c666a626725686466">[email&#160;protected]</span></a></p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Ines Nix</span>
+  <div class="footer-links">
+    <a onclick="showPage('privacy')">Privacy Policy</a>
+    <a onclick="showPage('terms')">Terms of Use</a>
+  </div>
+  <span class="footer-copy">© Ines Nix 2026. All rights reserved.</span>
+</footer>
+
+<!-- PROJECT MODAL DATA -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const projects = {
+picar: {
+    title: 'Autonomous Vehicle Control System',
+    meta: 'January – May 2025 ',
+    tags: ['Python', 'Raspberry Pi 4', 'OpenCV', 'PID Control'],
+    body: `
+      <p>Designed and implemented a full control system for an Adeept PiCar (Raspberry Pi 4 Model B) capable of autonomous navigation in real hallway environments. The system integrated real-time image processing, sensor fusion, and closed-loop motor control into a unified Python codebase developed and deployed over SSH using Visual Studio Code.</p>
+      <ul>
+        <li>Speed Control: Estimated motor speed using a photoresistor and a rotating disk with alternating light/dark regions, sampled via an MCP3008 10-bit ADC at 5 ms intervals. Implemented a PID controller (Kp = 19.92, Ki = 13.66, Kd = 0.0 under no load; Kp = 17.0, Ki = 11.0, Kd = 0.0 under load) to maintain a target of 5 RPS. Used circular buffers (deques of size 1000), a 7-point moving average filter, and dynamic threshold normalization to reduce noise and avoid double-counting transitions. Validated accuracy via FFT analysis of the smoothed signal — dominant frequency matched the expected ~5 Hz fundamental.</li>
+        <li>Obstacle Detection: Integrated an HC-SR04 ultrasonic sensor to calculate distance via pulse echo timing. The car halted autonomously when obstacles were detected within 20–30 cm.</li>
+        <li>Path Following (Blue Tape): Captured frames via the onboard camera, converted RGB to HSV, and applied hue-range masking (90–130) to isolate blue tape. Computed center-of-mass (COM) using OpenCV's moments method and applied Hough line detection (HoughLinesP) on Canny-edge-processed masks to estimate tape angle. Separately masked upper and lower image regions to decompose COM into proportional (travel direction) and integral (positional offset) components, enabling a physically grounded PID-like steering correction.</li>
+        <li>Manual Control + Autonomous Speed: Integrated keyboard input (s/d keys) for real-time servo steering while maintaining closed-loop PID speed control and obstacle stopping — all running simultaneously in a single control loop.</li>
+        <li>Extended the system to track a moving blue object using COM-based steering. Speed was modulated by the y-position of the COM (distance estimate); steering by x-position offset. Successfully tracked and followed a moving target, decelerating when the target left the frame.</li>
+        <li>Results: 1.0 second response time to target speed, 0% overshoot, 0.51 RPS steady-state error. Path following achieved 100% success rate across a wide range of starting conditions including off-track and angled starts.</li>
+      </ul>
+    `
+  },
+  phishing: {
+    title: 'Phishing Email Detection System',
+    meta: 'November – December 2025 ',
+    tags: ['Python'],
+    body: `
+      <p>Built a hybrid phishing email detection system combining a hand-crafted rule engine with machine learning classifiers, deployed through a web-based interface. The system analyzed email headers, sender domains, embedded URLs, and body content to produce a weighted phishing confidence score.</p>
+      <ul>
+        <li>Dataset: Used the Nazario_5 dataset (sourced from Kaggle), containing 1,469 phishing and 1,482 legitimate emails spanning 2015–2021 — a balanced class distribution well-suited for binary classification. Split 80% / 20% for training and testing.</li>
+        <li>Rule Engine (Layer 1): Implemented a heuristic rule-based preprocessing engine covering five categories: Header/Sender Authenticity (spoofed metadata, display name vs. domain mismatch, reply-to mismatch), Domain/Address rules (lookalike domains, suspicious TLDs like .xyz and .click), URL/Link rules (embedded link analysis), and Language/Content rules (urgency language, credential requests). Each rule contributed a weighted score to an overall suspicion rating.</li>
+        <li>ML Model — L2 Logistic Regression (Layer 2): Features included sender address length and randomness, subject character/word length and capitalization ratio, body readability (Flesch-Kincaid), suspicious word count, and URL count/length/TLD suspicion. Applied L2 regularization via gradient descent: grad_L2 = λw, with normalized training data. Achieved ~82% test accuracy.</li>
+        <li>ML Model — Random Forest: Trained with 300 decision trees on the same feature set and fixed random seed. Achieved ~73% test accuracy with strong phishing recall but higher false-positive rate for legitimate emails.</li>
+        <li>Integration: The L2 model was selected for the final system due to lower test error. Rule-based score and ML posterior probability were combined into a final weighted confidence score displayed in the UI.</li>
+        <li>Interface: Developed a web-based interface allowing users to input sender address, subject, and body — returning the rule score, ML probability, combined confidence, and flagged suspicious patterns. Color-coded output (red for phishing, green for legitimate) for at-a-glance assessment.</li>
+      </ul>
+    `
+  },
+  climate: {
+    title: 'Smart Climate Decision System',
+    meta: 'October 2025 · AI Hackathon — 3rd Place Overall (350+ participants)',
+    tags: ['Python', 'Multi-agent AI', 'HTML/CSS'],
+    body: `
+      <p>Developed a multi-agent AI system that optimizes climate intervention strategies using real-time environmental and agricultural data, built in 24 hours at WashU's AI Hackathon.</p>
+      <ul>
+        <li>Architected a multi-agent pipeline in which specialized AI agents independently processed environmental inputs (temperature, precipitation, soil conditions, crop data) and proposed localized climate intervention strategies.</li>
+        <li>Implemented both the backend agent coordination logic and the frontend user interface, iterating on UI design throughout the event to prioritize clarity and usability for non-technical users.</li>
+        <li>Integrated real-time data feeds into the agent decision loop, enabling the system to dynamically update recommendations as environmental conditions changed.</li>
+        <li>Collaborated with a cross-functional team under time pressure, coordinating on API integration, agent design, and final presentation — placing 3rd overall out of 350+ participants.</li>
+      </ul>
+    `
+  },
+  mapee: {
+    title: 'Motion-Activated Photobooth with Fire Safety',
+    meta: 'Fall 2025',
+    tags: ['Arduino (C)', 'Python Flask', 'ESP32-CAM'],
+    body: `
+      <p>Designed and built MAP-ee (Motion-Activated Photobooth), an embedded system combining an interactive photobooth with a real-time flame detection safety subsystem. The system was enclosed in a physical photobooth structure with internal wiring, sensors, and camera hardware.</p>
+      <ul>
+        <li>Hardware: SparkFun RedBoard (ATmega328P) as the main microcontroller; Inland PIR motion sensor for motion detection; photodiode for continuous flame sensing; piezo buzzer for audible countdown tones; 2W speaker (driven via NPN transistor) for fire alarm; ESP32-CAM WiFi module for image capture; red LED for visual status; 9V battery–powered DC fan demonstrating scalable hardware integration.</li>
+        <li>Arduino Firmware (C): A single pushbutton toggled the photobooth on/off. Flame detection ran continuously and at all times overrode the photobooth state, triggering an alarm routine. Upon motion detection, the firmware executed a 5-step audible countdown using the piezo buzzer, then sent a <code>TAKE PHOTO</code> serial command. A 7-second cooldown prevented rapid re-triggering. The system was governed by a state machine (OFF → IDLE → COUNTDOWN → PHOTO → COOLDOWN, with FIRE ALARM as a global override state).</li>
+        <li>Python Flask Server: A dedicated serial-reading thread continuously monitored incoming Arduino messages. On receiving <code>TAKE PHOTO</code>, the server issued an HTTP GET request to the ESP32-CAM's snapshot URL, saved the JPEG with a timestamp, and added it to a gallery list. Flask routes served a real-time log dashboard and an image gallery page accessible from any device on the local network.</li>
+        <li>Results: PIR sensor triggered reliably with no false positives; ESP32-CAM consistently delivered valid images; flame detection correctly interrupted the countdown at all stages; web dashboard updated in real time. All functional specifications were met under repeated testing.</li>
+      </ul>
+    `
+  },
+  covid: {
+    title: 'COVID-19 SIRD Transmission Modeling',
+    meta: 'Fall 2024',
+    tags: ['MATLAB'],
+    body: `
+      <p>Developed multi-phase SIRD and extended SIRDVV_b models to simulate COVID-19 transmission dynamics in St. Louis, MO across the initial wave, Delta variant, and Omicron variant, using real case and death data from the New York Times and U.S. Census population estimates.</p>
+      <ul>
+        <li>SIRD Model: Modeled daily population transitions (Susceptible → Infected → Recovered → Deceased) as a 4×4 linear dynamical system: x_{t+1} = Ax_t. Used MATLAB's fmincon to optimize the A matrix, minimizing sum of squared errors between model estimates and real weekly case/death data, subject to column-sum-to-one constraints and physically meaningful bounds (e.g., dead → susceptible = 0).</li>
+        <li>Variant Comparison: Generated separate optimized A matrices for the initial strain, Delta wave, and Omicron wave. Key findings: the I→D (infected-to-deceased) transition was 0.0002 for Delta vs. 0.0001 for Omicron, consistent with ADA severity data. The R→I (reinfection) rate was 0.0937 for Delta vs. 0.2635 for Omicron, reflecting Omicron's higher transmissibility. The I→R (recovery) rate was higher under Omicron (0.5312 vs. 0.2745), consistent with increased vaccination rates during that period.</li>
+        <li>SIRDVV_b Extension: Expanded the model to a 6×6 framework adding Vaccinated (V) and Breakthrough-infected (V_b) compartments. Assumed vaccine introduction at week 125, hand-tuned transition rates to model reduced infection and mortality among vaccinated individuals (V→V_b rate = 0.001 vs. S→I rate = 0.002; I→D rate = 0.00001 vs. V_b→D rate = 0.000001).</li>
+        <li>Policy Analysis: Modeled the effect of a 10-day quarantine mandate, predicting increased I→R and decreased S→I and R→I transition rates. Evaluated reinfection dynamics by toggling the R→I matrix element, showing that without reinfections ~10% of the population succumbs, while with reinfections the model predicts near-total mortality over time.</li>
+      </ul>
+    `
+  },
+  mnist: {
+    title: 'Handwritten Digit Classifier (MNIST)',
+    meta: 'Fall 2024',
+    tags: ['MATLAB'],
+    body: `
+      <p>Developed a three-phase handwritten digit recognition system on the MNIST dataset (24,000 training images, 28×28 pixels), progressing from least squares regression to a multi-class cosine similarity classifier achieving 81.9% overall accuracy.</p>
+      <ul>
+        <li>Part I — Least Squares Classifier: Flattened each 28×28 image into a 784-element vector. Solved the least squares problem min_w ||X^T w − Y||² using the pseudoinverse of X^T on a random subset N of training samples. Tested N from 50 to 15,000 — accuracy plateaued around 26.6% at N=10,000, reflecting inherent limitations of raw-pixel least squares without feature extraction.</li>
+        <li>Part II — Boolean Single-Class Classifier: Built a binary classifier for digit k=3. Defined a bounds vector w_k where each entry was 1 if any corresponding pixel was nonzero across all class-3 images. Applied threshold classification using f_k(x) = w_k^T x vs. mean(f_k). Improved by setting w_k entries to 1 only where ≥75% of class-3 images had nonzero pixels — increasing digit-3 accuracy by 29.2% and not-3 accuracy by 6.2% compared to the unmodified bounds.</li>
+        <li>Part III — Multi-Class Classifier: Computed a mean feature vector w_k for each of the 10 digit classes. Classified test images using cosine similarity: cos_sim = (w_k^T x) / (||w_k|| ||x||), assigning each image to the class with the highest score. This normalized for handwriting stroke thickness/intensity. Digits 0 and 1 achieved the highest accuracies (92.4% and 93.1%) due to structurally distinct shapes. Digit 5 had the lowest accuracy (64.7%) due to confusion with 0, 3, and 8. Overall: 81.9% accuracy across all 10 classes on the held-out test set.</li>
+      </ul>
+    `
+  },
+  flood: {
+    title: 'Flood Risk Analysis — St. Louis City',
+    meta: 'Spring 2024',
+    tags: ['MATLAB'],
+    body: `
+      <p>Conducted a comprehensive quantitative analysis of flood risk drivers in St. Louis, MO, modeling five environmental variables across historical and recent datasets and applying statistical correlation to assess each driver's relative influence on flood magnitude and frequency.</p>
+      <ul>
+        <li>Precipitation (1900–2023): Analyzed records from 13 NOAA stations via Climate Data Visualizer. Annual precipitation showed an upward trend (R² = 0.104). Average yearly precipitation: 955 mm; peak single-day rainfall: 195.8 mm.</li>
+        <li>Temperature (1874–2021): Average annual temperature trended upward (R² = 0.22), with a mean of 65.4°F and a maximum of 71.2°F in 2021. Temperature was the strongest and most statistically significant driver of both historic flood magnitude (R = 0.730, p = 0.007) and frequency (R = 0.683, p = 0.014).</li>
+        <li>Potential Evapotranspiration (1900–2018): Calculated using the Penman-Monteith Combination Method, incorporating daily max temperature (NOAA), wind speed (Lambert Airport), vapor pressure (Belleville Research Station), and incoming solar radiation. Mean annual PET: 10.9 m; increasing at 0.0296 m/yr (R² = 0.171). PET was the strongest driver of recent peak flow median discharge (R = 0.821, p = 0.001).</li>
+        <li>Soil Moisture & Green-Ampt Modeling: Used International Soil Moisture Network data (2019–2021). Modeled time-to-ponding for three representative St. Louis soil types (silt loam urban complex, frequently-flooded silt loam, and silty clay loam) using the Green-Ampt equation. Soil moisture peaks in winter/spring (~35%), dropping sharply in summer — paradoxically increasing runoff risk due to lower infiltration capacity during peak precipitation months.</li>
+        <li>Peak Streamflow (River Des Peres): Analyzed historic annual peak discharge (1997–2022) and recent daily mean discharge (2010–2022, converted to peaks via MATLAB findpeaks). Calculated recurrence intervals: 2-yr = 98.5 m³/s (historic), 6.3 m³/s (recent). Historic peak flows trended upward (R² = 0.134), with highest flows in May–August. ~1,091 peak flow events detected in the recent dataset (~84/year).</li>
+        <li>Conclusion: Temperature is the dominant driver of historic flood magnitude and frequency in St. Louis. Summer months combine peak temperature, PET, and precipitation with low soil moisture — creating high-runoff conditions. The NRI rates St. Louis as "relatively moderate" flood risk with "very high" social vulnerability, underscoring the need for equitable flood mitigation infrastructure.</li>
+      </ul>
+    `
+  },
+  gis: {
+    title: 'Green Paths: GIS Walkway Mapping — Greene County',
+    meta: 'Spring 2024',
+    tags: ['ArcGIS Pro 3.2'],
+    body: `
+      <p>Used <strong>ESRI ArcGIS Pro 3.2</strong> to build an environmental vulnerability index for Greene County, MO and generate optimal pedestrian walkway routes from public schools to environmentally safe areas, avoiding contaminated zones.</p>
+      <ul>
+        <li>Environmental Vulnerability Index (EVI): Combined three reclassified raster layers at 300 m² resolution: (1)Hazardous Waste — distance accumulation from operating/former underground storage tanks and petroleum facilities (MO DNR, 2018), reclassified by EPA chemical mobility thresholds (&lt;0.5 mi = 3, 0.5–1 mi = 2, 1–1.5 mi = 1, &gt;1.5 mi = 0); (2)Impervious Surfaces— percent impervious cover from NLCD 2021 (MRLC/CONUS), reclassified 0–20% = 0 through 80–100% = 3; (3) Tree Canopy Cover — percent canopy from NLCD 2021, inversely reclassified (0–10% = 3, 65–100% = 0). Summed layers via Raster Calculator into a 0–9 EVI. Most of the county scored 4 (41%); 5.9% scored 7–9 (hazardous); 13.6% scored 0 (safest).</li>
+        <li>Safest &amp; Hazardous Areas:Isolated EVI scores 0–2 and intersected with Missouri Department of Conservation lands to define environmentally safe destination zones (18.9 km² total, predominantly deciduous forest). Isolated EVI 6–9 as hazardous barriers (295.7 km², 10.7% of county), dominated by medium-intensity developed land.</li>
+        <li>Walkway Generation: Of 89 public schools in Greene County, identified 16 outside hazardous areas as walkway origins. Used Distance Accumulation (with hazardous areas as barriers) followed by <strong>Optimal Path as Line</strong> to generate routes to the nearest safe destination for each school, minimizing both hazardous exposure and travel distance.</li>
+        <li>Final Selection: Selected 3 final walkway proposals that intersected with natural glade areas (open rocky outcrops with unique flora/fauna) for maximum aesthetic and educational value. Path lengths: 21 km, 13.9 km, and 10.2 km (average 15 km). Walkways crossed 11 land cover types, predominantly hay/pasture (46.7%) and deciduous forest (18.7%).</li>
+      </ul>
+    `
+  }
+};
+
+function openModal(key) {
+  const p = projects[key];
+  const tagsHtml = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  document.getElementById('modal-content').innerHTML =
+    `<h3>${p.title}</h3><div class="modal-meta">${p.meta}</div>${tagsHtml}${p.body}`;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+
+/* PAGE SWITCHER */
+function showPage(page) {
+  document.getElementById('main-page').style.display = 'none';
+  document.getElementById('privacy-page').style.display = 'none';
+  document.getElementById('terms-page').style.display = 'none';
+  if (page === 'main') document.getElementById('main-page').style.display = 'block';
+  else if (page === 'privacy') document.getElementById('privacy-page').style.display = 'block';
+  else if (page === 'terms') document.getElementById('terms-page').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+showPage('main');
+
+/* CONTACT FORM */</script>
+</body>
+</html>
