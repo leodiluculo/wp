@@ -566,7 +566,7 @@ picar: {
     meta: 'Fall 2025',
     tags: ['Arduino (C)', 'Python Flask'],
     body: `
-      <p>Designed and built MAP-ee (Motion-Activated Photobooth), an embedded system combining an interactive photobooth with a real-time flame detection safety subsystem. The system was enclosed in a physical photobooth structure with internal wiring, sensors, and camera hardware.</p>
+      <p>Designed and built a Motion-Activated Photobooth, an embedded system combining an interactive photobooth with a real-time flame detection safety subsystem. The system was enclosed in a physical photobooth structure with internal wiring, sensors, and camera hardware.</p>
       <ul>
         <li>Hardware: SparkFun RedBoard (ATmega328P) as the main microcontroller; Inland PIR motion sensor for motion detection; photodiode for continuous flame sensing; piezo buzzer for audible countdown tones; 2W speaker (driven via NPN transistor) for fire alarm; ESP32-CAM WiFi module for image capture; red LED for visual status; 9V battery–powered DC fan demonstrating scalable hardware integration.</li>
         <li>Arduino Firmware (C): A single pushbutton toggled the photobooth on/off. Flame detection ran continuously and at all times overrode the photobooth state, triggering an alarm routine. Upon motion detection, the firmware executed a 5-step audible countdown using the piezo buzzer, then sent a <code>TAKE PHOTO</code> serial command. A 7-second cooldown prevented rapid re-triggering. The system was governed by a state machine (OFF → IDLE → COUNTDOWN → PHOTO → COOLDOWN, with FIRE ALARM as a global override state).</li>
