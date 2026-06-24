@@ -10,31 +10,36 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --pink:#c95c7e;--pink-light:#f5d6e2;--pink-pale:#fdf0f5;--pink-dark:#9b3a5c;
-  --blue:#4a7ab5;--blue-light:#d6e4f5;--blue-pale:#f0f5fc;--blue-dark:#2f5580;
-  --green:#5a9072;--green-light:#d0ebdc;--green-pale:#f0f9f3;--green-dark:#366349;
-  --nav-bg:#fefcfd;--footer-bg:#1c2d3f;--footer-text:#e8f0f8;
+  --cream:#f4f3f1;
+  --pink-light:#f2d1d4;
+  --pink:#D8959B;
+  --pink-dark:#b87278;
+  --green:#829672;
+  --green-dark:#344C3D;
+  --green-pale:#eef2eb;
+  --green-light:#d4dece;
+  --nav-bg:#f4f3f1;--footer-bg:#344C3D;--footer-text:#f4f3f1;
   --text:#2a2a2a;--text-soft:#555;--radius:14px;
 }
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--text);overflow-x:hidden;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:58px;background:var(--nav-bg);border-bottom:1.5px solid #ede8f0;backdrop-filter:blur(8px);}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--pink-dark);text-decoration:none;letter-spacing:0.01em;cursor:pointer;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:58px;background:var(--nav-bg);border-bottom:1.5px solid var(--pink-light);backdrop-filter:blur(8px);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--green-dark);text-decoration:none;letter-spacing:0.01em;cursor:pointer;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{text-decoration:none;font-size:0.9rem;font-weight:500;color:var(--blue-dark);transition:color 0.2s;letter-spacing:0.02em;}
+.nav-links a{text-decoration:none;font-size:0.9rem;font-weight:500;color:var(--green-dark);transition:color 0.2s;letter-spacing:0.02em;}
 .nav-links a:hover{color:var(--pink);}
 
 /* PAGE VIEWS */
 #privacy-page,#terms-page{display:none;}
 
 /* HERO */
-.hero{min-height:100vh;background:linear-gradient(145deg,#fbe8f0 0%,#e8f2fb 50%,#e6f4ed 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 3rem 3rem;position:relative;overflow:hidden;text-align:center;}
-.hero-card{background:rgba(255,255,255,.88);border-radius:20px;padding:2.5rem 3rem;max-width:620px;width:100%;position:relative;z-index:2;box-shadow:0 8px 40px rgba(74,122,181,.10),0 2px 8px rgba(201,92,126,.07);backdrop-filter:blur(10px);}
-.hero-card h1{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--pink-dark);margin-bottom:1rem;}
+.hero{min-height:100vh;background:#f4f3f1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 3rem 3rem;position:relative;overflow:hidden;text-align:center;}
+.hero-card{background:rgba(255,255,255,.88);border-radius:20px;padding:2.5rem 3rem;max-width:620px;width:100%;position:relative;z-index:2;box-shadow:0 8px 40px rgba(130,150,114,.12),0 2px 8px rgba(216,149,155,.10);backdrop-filter:blur(10px);}
+.hero-card h1{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--green-dark);margin-bottom:1rem;}
 .hero-card p{font-size:1rem;line-height:1.85;color:var(--text-soft);margin-bottom:1.6rem;}
-.email-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border-radius:99px;background:var(--blue-dark);color:#fff;text-decoration:none;font-size:.92rem;font-weight:500;transition:background .2s,transform .15s;letter-spacing:.02em;}
+.email-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border-radius:99px;background:var(--green-dark);color:#fff;text-decoration:none;font-size:.92rem;font-weight:500;transition:background .2s,transform .15s;letter-spacing:.02em;}
 .email-btn:hover{background:var(--pink-dark);transform:translateY(-2px);}
 
 /* SHARED */
@@ -42,48 +47,48 @@ section{padding:5rem 3rem;}
 section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:2.5rem;}
 
 /* EDUCATION */
-.sec-edu{background:var(--blue-pale);}
-.sec-edu h2{color:var(--blue-dark);}
+.sec-edu{background:var(--cream);}
+.sec-edu h2{color:var(--green-dark);}
 
 /* EXPERIENCE */
-.sec-exp{background:var(--pink-pale);}
-.sec-exp h2{color:var(--pink-dark);}
+.sec-exp{background:var(--pink-light);}
+.sec-exp h2{color:var(--green-dark);}
 
 /* TIMELINE */
 .timeline{position:relative;padding-left:2.4rem;}
 .timeline::before{content:'';position:absolute;left:.5rem;top:0;bottom:0;width:2px;border-radius:2px;}
-.sec-edu .timeline::before{background:var(--blue-light);}
-.sec-exp .timeline::before{background:var(--pink-light);}
-.sec-lead .timeline::before{background:var(--blue-light);}
+.sec-edu .timeline::before{background:var(--green-light);}
+.sec-exp .timeline::before{background:var(--pink);}
+.sec-lead .timeline::before{background:var(--green-light);}
 .tl-item{position:relative;margin-bottom:1.5rem;}
 .tl-dot{position:absolute;left:-1.95rem;top:1.3rem;width:12px;height:12px;border-radius:50%;}
-.sec-edu .tl-dot{background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 2px var(--blue);}
+.sec-edu .tl-dot{background:var(--green);border:2px solid #fff;box-shadow:0 0 0 2px var(--green);}
 .sec-exp .tl-dot{background:var(--pink);border:2px solid #fff;box-shadow:0 0 0 2px var(--pink);}
-.sec-lead .tl-dot{background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 2px var(--blue);}
+.sec-lead .tl-dot{background:var(--green);border:2px solid #fff;box-shadow:0 0 0 2px var(--green);}
 .tl-card{border-radius:var(--radius);padding:1.4rem 1.8rem;}
-.sec-edu .tl-card{background:#fff;border:1.5px solid var(--blue-light);color:var(--blue-dark);}
-.sec-exp .tl-card{background:#fff;border:1.5px solid var(--pink-light);color:var(--pink-dark);}
-.sec-lead .tl-card{background:#fff;border:1.5px solid var(--blue-light);color:var(--blue-dark);}
+.sec-edu .tl-card{background:#fff;border:1.5px solid var(--green-light);color:var(--green-dark);}
+.sec-exp .tl-card{background:#fff;border:1.5px solid var(--pink-light);color:var(--green-dark);}
+.sec-lead .tl-card{background:#fff;border:1.5px solid var(--green-light);color:var(--green-dark);}
 .tl-card h3{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;margin-bottom:.75rem;}
 .tl-card .meta{font-size:.82rem;opacity:.7;margin-bottom:.6rem;font-weight:500;letter-spacing:.03em;}
 .tl-card ul{list-style:disc;padding-left:1.2rem;}
 .tl-card li{font-size:.91rem;line-height:1.7;margin-bottom:.35rem;color:var(--text);}
 
 /* PROJECTS */
-.sec-proj{background:var(--green-pale);}
+.sec-proj{background:var(--cream);}
 .sec-proj h2{color:var(--green-dark);text-align:center;}
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1060px;margin:0 auto;}
 .proj-card{background:#fff;border:1.5px solid var(--green-light);border-radius:var(--radius);padding:1.4rem 1.2rem;transition:transform .2s,box-shadow .2s;cursor:pointer;}
-.proj-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(90,144,114,.16);}
+.proj-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(130,150,114,.18);}
 .proj-card h3{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--green-dark);margin-bottom:.5rem;}
 .proj-card .tag{display:inline-block;font-size:.72rem;font-weight:500;letter-spacing:.04em;background:var(--green-light);color:var(--green-dark);border-radius:99px;padding:.18rem .6rem;margin-bottom:.55rem;}
 .proj-card p{font-size:.86rem;color:var(--text-soft);line-height:1.65;}
 .proj-card .expand-hint{font-size:.75rem;color:var(--green);margin-top:.7rem;font-style:italic;}
 
 /* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
+.modal-overlay{position:fixed;inset:0;background:rgba(52,76,61,.45);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
 .modal-overlay.open{opacity:1;pointer-events:all;}
-.modal-box{background:#fff;border-radius:20px;padding:2.5rem;max-width:680px;width:90%;max-height:85vh;overflow-y:auto;transform:translateY(20px);transition:transform .25s;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.18);}
+.modal-box{background:#fff;border-radius:20px;padding:2.5rem;max-width:680px;width:90%;max-height:85vh;overflow-y:auto;transform:translateY(20px);transition:transform .25s;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.14);}
 .modal-overlay.open .modal-box{transform:translateY(0);}
 .modal-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--green-dark);margin-bottom:.4rem;}
 .modal-box .modal-meta{font-size:.82rem;color:var(--text-soft);margin-bottom:1rem;font-weight:500;}
@@ -95,28 +100,20 @@ section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:2.5
 .modal-close:hover{color:var(--pink);}
 
 /* LEADERSHIP */
-.sec-lead{background:var(--blue-pale);}
-.sec-lead h2{color:var(--blue-dark);}
+.sec-lead{background:var(--green-pale);}
+.sec-lead h2{color:var(--green-dark);}
 
-/* SKILLS */
-.sec-skills{background:var(--pink-pale);}
-.sec-skills h2{color:var(--pink-dark);text-align:center;}
-.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:860px;margin:0 auto;}
-.skill-block h4{font-family:'Playfair Display',serif;font-size:.93rem;font-weight:700;color:var(--pink-dark);margin-bottom:.55rem;}
-.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
-.skill-tag{font-size:.78rem;font-weight:500;letter-spacing:.03em;background:#fff;border:1.5px solid var(--pink-light);color:var(--text);border-radius:99px;padding:.2rem .65rem;}
-.interest-tag{background:#fff;border:1.5px solid var(--green-light);color:var(--green-dark);}
 
 /* CONTACT */
-.sec-contact{background:linear-gradient(135deg,var(--pink-pale) 0%,var(--blue-pale) 100%);display:flex;flex-direction:column;align-items:center;text-align:center;}
-.sec-contact h2{color:var(--blue-dark);}
+.sec-contact{background:#f2d1d4;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.sec-contact h2{color:var(--green-dark);}
 .contact-form{max-width:520px;width:100%;text-align:left;}
 .form-group{margin-bottom:1.1rem;}
-.form-group label{display:block;font-weight:500;font-size:.88rem;color:var(--blue-dark);margin-bottom:.35rem;letter-spacing:.03em;}
-.form-group input,.form-group textarea{width:100%;padding:.7rem 1rem;border:1.5px solid var(--blue-light);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.95rem;background:#fff;color:var(--text);outline:none;transition:border-color .2s;}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--blue);}
+.form-group label{display:block;font-weight:500;font-size:.88rem;color:var(--green-dark);margin-bottom:.35rem;letter-spacing:.03em;}
+.form-group input,.form-group textarea{width:100%;padding:.7rem 1rem;border:1.5px solid var(--green-light);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.95rem;background:#fff;color:var(--text);outline:none;transition:border-color .2s;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--green);}
 .form-group textarea{resize:vertical;min-height:110px;}
-.submit-btn{display:block;margin:0 auto;background:var(--blue-dark);color:#fff;border:none;border-radius:99px;padding:.75rem 2.2rem;font-family:'DM Sans',sans-serif;font-size:.95rem;cursor:pointer;font-weight:500;transition:background .2s,transform .15s;letter-spacing:.02em;}
+.submit-btn{display:block;margin:0 auto;background:var(--green-dark);color:#fff;border:none;border-radius:99px;padding:.75rem 2.2rem;font-family:'DM Sans',sans-serif;font-size:.95rem;cursor:pointer;font-weight:500;transition:background .2s,transform .15s;letter-spacing:.02em;}
 .submit-btn:hover{background:var(--pink-dark);transform:translateY(-2px);}
 .form-ok{margin-top:1rem;color:var(--green-dark);font-weight:500;display:none;text-align:center;}
 
@@ -129,13 +126,13 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 .footer-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;opacity:.9;}
 
 /* LEGAL PAGES */
-#privacy-page,#terms-page{background:linear-gradient(160deg,var(--green-pale) 0%,#fff 40%);min-height:100vh;}
+#privacy-page,#terms-page{background:var(--green-pale);min-height:100vh;}
 .legal-page{padding:100px 2rem 5rem;max-width:760px;margin:0 auto;min-height:100vh;}
 .legal-page .page-title{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--green-dark);margin-bottom:.4rem;}
 .legal-page .updated{font-size:.85rem;color:var(--text-soft);margin-bottom:2.5rem;}
 .legal-page h2{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--pink-dark);margin-top:2rem;margin-bottom:.6rem;}
 .legal-page p{font-size:.95rem;line-height:1.8;color:var(--text-soft);margin-bottom:.8rem;}
-.legal-page a{color:var(--blue);text-decoration:underline;}
+.legal-page a{color:var(--green);text-decoration:underline;}
 .back-btn{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:2rem;font-size:.88rem;font-weight:500;color:var(--green-dark);cursor:pointer;background:var(--green-light);border:none;border-radius:99px;padding:.4rem 1rem;transition:background .2s;}
 .back-btn:hover{background:var(--green);}
 
@@ -170,7 +167,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 <section class="hero" id="home">
   <div class="hero-card">
     <h1>Ines Nix</h1>
-    <p>Hello! I'm Ines Nix, a computer engineering undergraduate student at Washington University in St. Louis. Over the years, I’ve explored a variety of tech fields, including research and machine learning, data science, robotics, and computational biology, and I’m always eager to learn new skills and take on exciting challenges.</p>
+    <p>Hello! I'm Ines Nix, a computer engineering undergraduate student at Washington University in St. Louis. Over the years, I've explored a variety of tech fields, including research and machine learning, data science, robotics, and computational biology, and I'm always eager to learn new skills and take on exciting challenges.</p>
     <a href="mailto:inessnix@gmail.com" class="email-btn">💌</a>
   </div>
 </section>
@@ -373,7 +370,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 
 <!-- SKILLS -->
 <section class="sec-skills" id="skills">
-  <h2>Skills &amp; Interests</h2>
+  <h2>Skills &amp; Experience</h2>
   <div class="skills-grid">
     <div class="skill-block">
       <h4>Programming Languages</h4>
@@ -404,16 +401,6 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
         <span class="skill-tag">Breadboard Prototyping</span>
       </div>
     </div>
-    <div class="skill-block">
-      <h4>Interests</h4>
-      <div class="skill-tags">
-        <span class="skill-tag interest-tag">🏄 Windsurfing</span>
-        <span class="skill-tag interest-tag">🥾 Hiking</span>
-        <span class="skill-tag interest-tag">🎸 Guitar</span>
-        <span class="skill-tag interest-tag">🍵 Kombucha Fermentation</span>
-        <span class="skill-tag interest-tag">🎹 Piano</span>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -424,7 +411,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
     <div class="form-group"><label for="cname">Name</label><input type="text" name="name" id="cname" placeholder="Your name" required/></div>
     <div class="form-group"><label for="cemail">Email</label><input type="email" name="email" id="cemail" placeholder="your@email.com" required/></div>
     <div class="form-group"><label for="cmsg">Message</label><textarea name="message" id="cmsg" placeholder="Say hello..." required></textarea></div>
-    <button type="submit" class="submit-btn">Send message </button>
+    <button type="submit" class="submit-btn">Send message</button>
     <p class="form-ok" id="formOk">Thanks! I'll get back to you soon 🌿</p>
   </form>
 </section>
@@ -502,6 +489,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
     <p><a href="mailto:inessnix@gmail.com">inessnix@gmail.com</a></p>
   </div>
 </div>
+
 <!-- FOOTER -->
 <footer>
   <span class="footer-name">Ines Nix</span>
@@ -513,7 +501,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 </footer>
 
 <!-- PROJECT MODAL DATA -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const projects = {
 picar: {
     title: 'Autonomous Vehicle Control System',
@@ -569,8 +557,8 @@ picar: {
       <p>Designed and built a Motion-Activated Photobooth, an embedded system combining an interactive photobooth with a real-time flame detection safety subsystem. The system was enclosed in a physical photobooth structure with internal wiring, sensors, and camera hardware.</p>
       <ul>
         <li>Hardware: SparkFun RedBoard (ATmega328P) as the main microcontroller; Inland PIR motion sensor for motion detection; photodiode for continuous flame sensing; piezo buzzer for audible countdown tones; 2W speaker (driven via NPN transistor) for fire alarm; ESP32-CAM WiFi module for image capture; red LED for visual status; 9V battery–powered DC fan demonstrating scalable hardware integration.</li>
-        <li>Arduino Firmware (C): A single pushbutton toggled the photobooth on/off. Flame detection ran continuously and at all times overrode the photobooth state, triggering an alarm routine. Upon motion detection, the firmware executed a 5-step audible countdown using the piezo buzzer, then sent a <code>TAKE PHOTO</code> serial command. A 7-second cooldown prevented rapid re-triggering. The system was governed by a state machine (OFF → IDLE → COUNTDOWN → PHOTO → COOLDOWN, with FIRE ALARM as a global override state).</li>
-        <li>Python Flask Server: A dedicated serial-reading thread continuously monitored incoming Arduino messages. On receiving <code>TAKE PHOTO</code>, the server issued an HTTP GET request to the ESP32-CAM's snapshot URL, saved the JPEG with a timestamp, and added it to a gallery list. Flask routes served a real-time log dashboard and an image gallery page accessible from any device on the local network.</li>
+        <li>Arduino Firmware (C): A single pushbutton toggled the photobooth on/off. Flame detection ran continuously and at all times overrode the photobooth state, triggering an alarm routine. Upon motion detection, the firmware executed a 5-step audible countdown using the piezo buzzer, then sent a TAKE PHOTO serial command. A 7-second cooldown prevented rapid re-triggering. The system was governed by a state machine (OFF → IDLE → COUNTDOWN → PHOTO → COOLDOWN, with FIRE ALARM as a global override state).</li>
+        <li>Python Flask Server: A dedicated serial-reading thread continuously monitored incoming Arduino messages. On receiving TAKE PHOTO, the server issued an HTTP GET request to the ESP32-CAM's snapshot URL, saved the JPEG with a timestamp, and added it to a gallery list. Flask routes served a real-time log dashboard and an image gallery page accessible from any device on the local network.</li>
         <li>Results: PIR sensor triggered reliably with no false positives; ESP32-CAM consistently delivered valid images; flame detection correctly interrupted the countdown at all stages; web dashboard updated in real time. All functional specifications were met under repeated testing.</li>
       </ul>
     `
@@ -625,8 +613,8 @@ picar: {
     body: `
       <p>Used ESRI ArcGIS Pro 3.2 to build an environmental vulnerability index for Greene County, MO and generate optimal pedestrian walkway routes from public schools to environmentally safe areas, avoiding contaminated zones.</p>
       <ul>
-        <li>Environmental Vulnerability Index (EVI): Combined three reclassified raster layers at 300 m² resolution: (1)Hazardous Waste — distance accumulation from operating/former underground storage tanks and petroleum facilities (MO DNR, 2018), reclassified by EPA chemical mobility thresholds (&lt;0.5 mi = 3, 0.5–1 mi = 2, 1–1.5 mi = 1, &gt;1.5 mi = 0); (2)Impervious Surfaces— percent impervious cover from NLCD 2021 (MRLC/CONUS), reclassified 0–20% = 0 through 80–100% = 3; (3) Tree Canopy Cover — percent canopy from NLCD 2021, inversely reclassified (0–10% = 3, 65–100% = 0). Summed layers via Raster Calculator into a 0–9 EVI. Most of the county scored 4 (41%); 5.9% scored 7–9 (hazardous); 13.6% scored 0 (safest).</li>
-        <li>Safest &amp; Hazardous Areas:Isolated EVI scores 0–2 and intersected with Missouri Department of Conservation lands to define environmentally safe destination zones (18.9 km² total, predominantly deciduous forest). Isolated EVI 6–9 as hazardous barriers (295.7 km², 10.7% of county), dominated by medium-intensity developed land.</li>
+        <li>Environmental Vulnerability Index (EVI): Combined three reclassified raster layers at 300 m² resolution: (1) Hazardous Waste — distance accumulation from operating/former underground storage tanks and petroleum facilities (MO DNR, 2018), reclassified by EPA chemical mobility thresholds (&lt;0.5 mi = 3, 0.5–1 mi = 2, 1–1.5 mi = 1, &gt;1.5 mi = 0); (2) Impervious Surfaces — percent impervious cover from NLCD 2021 (MRLC/CONUS), reclassified 0–20% = 0 through 80–100% = 3; (3) Tree Canopy Cover — percent canopy from NLCD 2021, inversely reclassified (0–10% = 3, 65–100% = 0). Summed layers via Raster Calculator into a 0–9 EVI. Most of the county scored 4 (41%); 5.9% scored 7–9 (hazardous); 13.6% scored 0 (safest).</li>
+        <li>Safest &amp; Hazardous Areas: Isolated EVI scores 0–2 and intersected with Missouri Department of Conservation lands to define environmentally safe destination zones (18.9 km² total, predominantly deciduous forest). Isolated EVI 6–9 as hazardous barriers (295.7 km², 10.7% of county), dominated by medium-intensity developed land.</li>
         <li>Walkway Generation: Of 89 public schools in Greene County, identified 16 outside hazardous areas as walkway origins. Used Distance Accumulation (with hazardous areas as barriers) followed by Optimal Path as Line to generate routes to the nearest safe destination for each school, minimizing both hazardous exposure and travel distance.</li>
         <li>Final Selection: Selected 3 final walkway proposals that intersected with natural glade areas (open rocky outcrops with unique flora/fauna) for maximum aesthetic and educational value. Path lengths: 21 km, 13.9 km, and 10.2 km (average 15 km). Walkways crossed 11 land cover types, predominantly hay/pasture (46.7%) and deciduous forest (18.7%).</li>
       </ul>
@@ -651,7 +639,6 @@ function closeModalBtn() {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
 
-/* PAGE SWITCHER */
 function showPage(page) {
   document.getElementById('main-page').style.display = 'none';
   document.getElementById('privacy-page').style.display = 'none';
@@ -663,6 +650,20 @@ function showPage(page) {
 }
 showPage('main');
 
-/* CONTACT FORM */</script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      form.reset();
+      document.getElementById('formOk').style.display = 'block';
+    }
+  });
+}
+</script>
 </body>
 </html>
