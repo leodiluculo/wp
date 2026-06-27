@@ -31,6 +31,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .nav-links a{text-decoration:none;font-size:0.9rem;font-weight:500;color:var(--green-dark);transition:color 0.2s;letter-spacing:0.02em;}
 .nav-links a:hover{color:var(--pink);}
 
+.green-link {
+  color: var(--green-dark);
+}
+
+.green-link:hover {
+  color: var(--pink);
+}
+
 /* PAGE VIEWS */
 #privacy-page,#terms-page{display:none;}
 
@@ -268,7 +276,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
         <ul>
           <li>Conducted protein stability analysis using FoldX and MutateX on a high-performance computing (HPC) cluster in a Linux environment to evaluate point mutations.</li>
           <li>Analyzed mutation data using R for visualization and statistical interpretation, and developed an interactive web interface using JavaScript and HTML to enable biologists to perform site-directed mutagenesis experiments.</li>
-          <li><a href="https://leodiluculo.github.io/integrin/" target="_blank" rel="noopener">View project site ↗</a></li>
+          <li><a class="green-link" href="https://leodiluculo.github.io/integrin/" target="_blank" rel="noopener">View project site ↗</a></li>
         </ul>
       </div>
     </div>
@@ -377,7 +385,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 
     <div class="proj-card" onclick="openModal('pcb')">
       <div class="proj-thumb">
-        <img src="img/pcb1.jpg" alt="USB LED Keychain PCB" loading="lazy">
+        <img src="img/pcb1.png" alt="USB LED Keychain PCB" loading="lazy">
       </div>
       <div class="tag">KiCad · PCB Design</div>
       <h3>USB LED Keychain PCB</h3>
@@ -765,7 +773,7 @@ const projects = {
   },
   pcb: {
     title: 'USB LED Keychain PCB',
-    images: ['img/pcb1.jpg', 'img/pcb2.jpg'],
+    images: ['img/pcb1.png', 'img/pcb2.png'],
     meta: 'Spring 2026',
     tags: ['KiCad', 'PCB Design'],
     body: `
