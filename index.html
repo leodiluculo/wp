@@ -322,6 +322,9 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
   <div class="proj-grid">
 
     <div class="proj-card" onclick="openModal('picar')">
+      <div class="proj-thumb">
+        <img src="img/picar1.jpg" alt="Autonomous Vehicle Control System" loading="lazy">
+      </div>
       <div class="tag">Python · Raspberry Pi · OpenCV</div>
       <h3>Autonomous Vehicle Control System</h3>
       <p>Raspberry Pi–powered car with real-time image processing, PID speed control, obstacle detection, and autonomous path following.</p>
@@ -614,6 +617,7 @@ function closeCert(e) {
 const projects = {
 picar: {
     title: 'Autonomous Vehicle Control System',
+    images: ['img/picar1.jpg', 'img/picar2.jpg', 'img/picar3.jpg'],
     meta: 'January – May 2025 ',
     tags: ['Python', 'Raspberry Pi', 'OpenCV'],
     body: `
@@ -630,6 +634,7 @@ picar: {
   },
   phishing: {
     title: 'Phishing Email Detection System',
+    images: ['img/phishing1.jpg', 'img/phishing2.jpg'],
     meta: 'November – December 2025 ',
     tags: ['Python', 'ML', 'HTML/CSS'],
     body: `
@@ -731,6 +736,7 @@ picar: {
   },
   pcb: {
   title: 'USB LED Keychain PCB',
+  images: ['img/pcb1.jpg', 'img/pcb2.jpg', 'img/pcb3.jpg'],
   meta: 'Spring 2026',
   tags: ['KiCad', 'PCB Design'],
   body: `
