@@ -774,6 +774,7 @@ const projects = {
   pcb: {
     title: 'USB LED Keychain PCB',
     images: ['img/pcb1.png', 'img/pcb2.png'],
+    imageScale: 0.5,
     meta: 'Spring 2026',
     tags: ['KiCad', 'PCB Design'],
     body: `
@@ -808,7 +809,7 @@ function openModal(key) {
       </div>` : '';
     galleryHTML = `
       <div class="modal-gallery">
-        <img id="galleryImg" src="${galleryImages[0]}" alt="${p.title}">
+        <img id="galleryImg" src="${galleryImages[0]}" alt="${p.title}" style="width:${(p.imageScale || 1) * 100}%;">
         ${arrows}
       </div>`;
   }
