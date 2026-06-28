@@ -395,16 +395,6 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
       <div class="expand-hint">↗ Click to expand</div>
     </div>
 
-    <div class="proj-card" onclick="openModal('covid')">
-      <div class="proj-thumb">
-        <img src="img/covid1.jpg" alt="COVID-19 SIRD Transmission Modeling" loading="lazy">
-      </div>
-      <div class="tag">MATLAB</div>
-      <h3>COVID-19 SIRD Transmission Modeling</h3>
-      <p>Linear dynamical system modeling of COVID-19 waves using fmincon-optimized transition matrices.</p>
-      <div class="expand-hint">↗ Click to expand</div>
-    </div>
-
     <div class="proj-card" onclick="openModal('mnist')">
       <div class="proj-thumb">
         <img src="img/mnist1.jpg" alt="Handwritten Digit Classifier" loading="lazy">
@@ -723,21 +713,7 @@ const projects = {
       </ul>
     `
   },
-  covid: {
-    title: 'COVID-19 SIRD Transmission Modeling',
-    images: ['img/covid1.jpg', 'img/covid2.jpg'],
-    meta: 'Fall 2024',
-    tags: ['MATLAB'],
-    body: `
-      <p>Developed multi-phase SIRD and extended SIRDVV_b models to simulate COVID-19 transmission dynamics in St. Louis, MO across the initial wave, Delta variant, and Omicron variant, using real case and death data from the New York Times and U.S. Census population estimates.</p>
-      <ul>
-        <li>SIRD Model: Modeled daily population transitions (Susceptible → Infected → Recovered → Deceased) as a 4×4 linear dynamical system: x_{t+1} = Ax_t. Used MATLAB's fmincon to optimize the A matrix, minimizing sum of squared errors between model estimates and real weekly case/death data, subject to column-sum-to-one constraints and physically meaningful bounds (e.g., dead → susceptible = 0).</li>
-        <li>Variant Comparison: Generated separate optimized A matrices for the initial strain, Delta wave, and Omicron wave. Key findings: the I→D (infected-to-deceased) transition was 0.0002 for Delta vs. 0.0001 for Omicron, consistent with ADA severity data. The R→I (reinfection) rate was 0.0937 for Delta vs. 0.2635 for Omicron, reflecting Omicron's higher transmissibility. The I→R (recovery) rate was higher under Omicron (0.5312 vs. 0.2745), consistent with increased vaccination rates during that period.</li>
-        <li>SIRDVV_b Extension: Expanded the model to a 6×6 framework adding Vaccinated (V) and Breakthrough-infected (V_b) compartments. Assumed vaccine introduction at week 125, hand-tuned transition rates to model reduced infection and mortality among vaccinated individuals (V→V_b rate = 0.001 vs. S→I rate = 0.002; I→D rate = 0.00001 vs. V_b→D rate = 0.000001).</li>
-        <li>Policy Analysis: Modeled the effect of a 10-day quarantine mandate, predicting increased I→R and decreased S→I and R→I transition rates. Evaluated reinfection dynamics by toggling the R→I matrix element, showing that without reinfections ~10% of the population succumbs, while with reinfections the model predicts near-total mortality over time.</li>
-      </ul>
-    `
-  },
+
   mnist: {
     title: 'Handwritten Digit Classifier (MNIST)',
     images: ['img/mnist1.jpg', 'img/mnist2.jpg'],
