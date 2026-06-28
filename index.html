@@ -95,13 +95,13 @@ section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:2.5
 
 /* CARD THUMBNAIL */
 .proj-thumb{width:calc(100% + 2.4rem);height:160px;overflow:hidden;border-radius:10px 10px 0 0;margin:-1.4rem -1.2rem 1rem -1.2rem;}
-.proj-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.proj-thumb img{width:100%;height:100%;object-fit:contain;background:#f8f8f5;display:block;}
 .proj-thumb img.contain{object-fit:contain;background:#f8f8f5;}
 .modal-gallery img.contain{object-fit:contain;background:#f8f8f5;}
 
 /* MODAL GALLERY */
 .modal-gallery{position:relative;width:100%;margin-bottom:1.25rem;border-radius:10px;overflow:hidden;background:#f0f0ec;aspect-ratio:16/9;}
-.modal-gallery img{width:100%;height:100%;object-fit:cover;display:block;}
+.modal-gallery img{width:100%;height:100%;object-fit:contain;background:#f8f8f5;display:block;}
 .gallery-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);border:none;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.15);transition:background .15s;z-index:2;}
 .gallery-btn:hover{background:#fff;}
 .gallery-btn.prev{left:10px;}
