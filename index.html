@@ -96,6 +96,8 @@ section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:2.5
 /* CARD THUMBNAIL */
 .proj-thumb{width:calc(100% + 2.4rem);height:160px;overflow:hidden;border-radius:10px 10px 0 0;margin:-1.4rem -1.2rem 1rem -1.2rem;}
 .proj-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.proj-thumb img.contain{object-fit:contain;background:#f8f8f5;}
+.modal-gallery img.contain{object-fit:contain;background:#f8f8f5;}
 
 /* MODAL GALLERY */
 .modal-gallery{position:relative;width:100%;margin-bottom:1.25rem;border-radius:10px;overflow:hidden;background:#f0f0ec;aspect-ratio:16/9;}
@@ -385,7 +387,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 
     <div class="proj-card" onclick="openModal('pcb')">
       <div class="proj-thumb">
-        <img src="img/pcb1.png" alt="USB LED Keychain PCB" loading="lazy">
+        <img src="img/pcb1.png" alt="USB LED Keychain PCB" loading="lazy" class="contain">
       </div>
       <div class="tag">KiCad · PCB Design</div>
       <h3>USB LED Keychain PCB</h3>
@@ -785,6 +787,7 @@ const projects = {
     title: 'USB LED Keychain PCB',
     images: ['img/pcb1.png', 'img/pcb2.png'],
     imageScale: 0.5,
+    contain: true,
     meta: 'Spring 2026',
     tags: ['KiCad', 'PCB Design'],
     body: `
@@ -819,7 +822,7 @@ function openModal(key) {
       </div>` : '';
     galleryHTML = `
       <div class="modal-gallery">
-        <img id="galleryImg" src="${galleryImages[0]}" alt="${p.title}" style="width:${(p.imageScale || 1) * 100}%;">
+        <img id="galleryImg" src="${galleryImages[0]}" alt="${p.title}"${p.contain ? ' class="contain"' : ''}>
         ${arrows}
       </div>`;
   }
