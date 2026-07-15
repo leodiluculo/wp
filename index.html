@@ -39,6 +39,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
   color: var(--pink);
 }
 
+.nav-burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:0;z-index:1002;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--green-dark);border-radius:2px;transition:transform .25s ease,opacity .25s ease;}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-burger.open span:nth-child(2){opacity:0;}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
 /* PAGE VIEWS */
 #privacy-page,#terms-page{display:none;}
 
@@ -193,7 +199,35 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 .back-btn{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:2rem;font-size:.88rem;font-weight:500;color:var(--green-dark);cursor:pointer;background:var(--green-light);border:none;border-radius:99px;padding:.4rem 1rem;transition:background .2s;}
 .back-btn:hover{background:var(--green);}
 
-@media(max-width:768px){.proj-grid{grid-template-columns:1fr 1fr;}nav{padding:0 1.2rem;}.nav-links{gap:1rem;}.hero{padding:80px 1.5rem 3rem;}section{padding:3rem 1.5rem;}.skills-grid{grid-template-columns:1fr;}footer{flex-direction:column;text-align:center;}.footer-links{justify-content:center;}}
+@media(max-width:768px){
+  .proj-grid{grid-template-columns:1fr 1fr;}
+  nav{padding:0 1.2rem;}
+  .nav-burger{display:flex;}
+  .nav-links{
+    position:fixed;
+    top:58px;
+    left:0;
+    right:0;
+    flex-direction:column;
+    gap:0;
+    background:var(--nav-bg);
+    border-bottom:1.5px solid var(--pink-light);
+    box-shadow:0 12px 24px rgba(52,76,61,.10);
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition:max-height .3s ease,opacity .25s ease;
+    z-index:1001;
+  }
+  .nav-links.open{max-height:400px;opacity:1;}
+  .nav-links li{width:100%;}
+  .nav-links a{display:block;padding:.95rem 1.5rem;border-top:1px solid var(--green-light);font-size:1rem;}
+  .hero{padding:80px 1.5rem 3rem;}
+  section{padding:3rem 1.5rem;}
+  .skills-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;text-align:center;}
+  .footer-links{justify-content:center;}
+}
 @media(max-width:480px){.proj-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -201,13 +235,16 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 
 <nav>
   <a class="nav-logo" onclick="showPage('main')" href="#">Ines Nix</a>
-  <ul class="nav-links">
-    <li><a href="#education" onclick="showPage('main')">Education</a></li>
-    <li><a href="#experience" onclick="showPage('main')">Experience</a></li>
-    <li><a href="#projects" onclick="showPage('main')">Projects</a></li>
-    <li><a href="#leadership" onclick="showPage('main')">Leadership</a></li>
-    <li><a href="#certifications" onclick="showPage('main')">Certifications</a></li>
-    <li><a href="#contact" onclick="showPage('main')">Contact</a></li>
+  <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#education" onclick="handleNavClick()">Education</a></li>
+    <li><a href="#experience" onclick="handleNavClick()">Experience</a></li>
+    <li><a href="#projects" onclick="handleNavClick()">Projects</a></li>
+    <li><a href="#leadership" onclick="handleNavClick()">Leadership</a></li>
+    <li><a href="#certifications" onclick="handleNavClick()">Certifications</a></li>
+    <li><a href="#contact" onclick="handleNavClick()">Contact</a></li>
   </ul>
 </nav>
 
@@ -658,6 +695,24 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('prog-fill-2').style.width = COMPTIA_CORE2_PROGRESS + '%';
   document.getElementById('prog-pct-2').textContent = COMPTIA_CORE2_PROGRESS + '%';
 });
+
+// MOBILE NAV MENU
+function toggleMenu() {
+  const links = document.getElementById('nav-links');
+  const burger = document.getElementById('nav-burger');
+  const isOpen = links.classList.toggle('open');
+  burger.classList.toggle('open', isOpen);
+  burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+function closeMenu() {
+  document.getElementById('nav-links').classList.remove('open');
+  document.getElementById('nav-burger').classList.remove('open');
+  document.getElementById('nav-burger').setAttribute('aria-expanded', 'false');
+}
+function handleNavClick() {
+  showPage('main');
+  closeMenu();
+}
 
 const projects = {
   picar: {
