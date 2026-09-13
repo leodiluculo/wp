@@ -617,7 +617,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 <!-- ═══════════ PRIVACY PAGE ═══════════ -->
 <div id="privacy-page">
   <div class="legal-page">
-    <button class="back-btn" onclick="showPage('main')">← Back</button>
+    <button class="back-btn" onclick="showPage('main','contact')">← Back</button>
     <h1 class="page-title">Privacy Policy</h1>
     <p class="updated">Last updated: April 2026</p>
     <h2>Your Privacy</h2>
@@ -658,7 +658,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 <!-- ═══════════ TERMS PAGE ═══════════ -->
 <div id="terms-page">
   <div class="legal-page">
-    <button class="back-btn" onclick="showPage('main')">← Back to site</button>
+    <button class="back-btn" onclick="showPage('main','contact')">← Back to site</button>
     <h1 class="page-title">Terms of Use</h1>
     <p class="updated">Last updated: April 2026</p>
     <h2>Acceptance of Terms</h2>
@@ -913,14 +913,34 @@ function closeModalBtn() {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
 
-function showPage(page) {
+function showPage(page, scrollTarget) {
+  if (document.getElementById('main-page').style.display !== 'none') {
+    window._lastMainScroll = window.scrollY;
+  }
+
   document.getElementById('main-page').style.display = 'none';
   document.getElementById('privacy-page').style.display = 'none';
   document.getElementById('terms-page').style.display = 'none';
-  if (page === 'main') document.getElementById('main-page').style.display = 'block';
-  else if (page === 'privacy') document.getElementById('privacy-page').style.display = 'block';
-  else if (page === 'terms') document.getElementById('terms-page').style.display = 'block';
-  window.scrollTo(0, 0);
+
+  if (page === 'main') {
+    document.getElementById('main-page').style.display = 'block';
+  } else if (page === 'privacy') {
+    document.getElementById('privacy-page').style.display = 'block';
+  } else if (page === 'terms') {
+    document.getElementById('terms-page').style.display = 'block';
+  }
+
+
+  requestAnimationFrame(() => {
+    if (page === 'main' && scrollTarget) {
+      const el = document.getElementById(scrollTarget);
+      if (el) el.scrollIntoView();
+    } else if (page === 'main' && !scrollTarget) {
+      window.scrollTo(0, 0);
+    } else {
+      window.scrollTo(0, 0); 
+    }
+  });
 }
 showPage('main');
 
