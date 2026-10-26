@@ -45,9 +45,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .nav-burger.open span:nth-child(2){opacity:0;}
 .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-/* PAGE VIEWS */
-#privacy-page,#terms-page{display:none;}
-
 /* HERO */
 .hero{min-height:100vh;background:var(--pink-light);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 3rem 3rem;position:relative;overflow:hidden;text-align:center;}
 .hero-card{background:rgba(255,255,255,.88);border-radius:20px;padding:2.5rem 3rem;max-width:620px;width:100%;position:relative;z-index:2;box-shadow:0 8px 40px rgba(130,150,114,.12),0 2px 8px rgba(216,149,155,.10);backdrop-filter:blur(10px);}
@@ -143,7 +140,7 @@ section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:2.5
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(52,76,61,.45);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
 .modal-overlay.open{opacity:1;pointer-events:all;}
-.modal-box{background:#fff;border-radius:20px;padding:2.5rem;max-width:680px;width:90%;max-height:85vh;overflow-y:auto;transform:translateY(20px);transition:transform .25s;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.14);}
+.modal-box{background:#fff;border-radius:20px;padding:2.5rem;max-width:680px;width:90%;max-height:85vh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;transform:translateY(20px);transition:transform .25s;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.14);}
 .modal-overlay.open .modal-box{transform:translateY(0);}
 .modal-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--green-dark);margin-bottom:.4rem;}
 .modal-box .modal-meta{font-size:.82rem;color:var(--text-soft);margin-bottom:1rem;font-weight:500;}
@@ -151,8 +148,15 @@ section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:2.5
 .modal-box p{font-size:.93rem;line-height:1.8;color:var(--text-soft);margin-bottom:.8rem;}
 .modal-box ul{list-style:disc;padding-left:1.3rem;margin-bottom:.8rem;}
 .modal-box li{font-size:.92rem;line-height:1.75;margin-bottom:.3rem;color:var(--text);}
-.modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-soft);line-height:1;}
+.modal-close{position:sticky;top:0;float:right;margin:-1.2rem -1.2rem 0 0;background:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:1.5rem;cursor:pointer;color:var(--text-soft);line-height:1;z-index:5;}
 .modal-close:hover{color:var(--pink);}
+
+/* LEGAL POP-UPS (Privacy / Terms) */
+.legal-modal h3{font-size:1.7rem;}
+.legal-modal .updated{font-size:.82rem;color:var(--text-soft);font-weight:500;margin-bottom:1.6rem;}
+.legal-modal h4{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--pink-dark);margin-top:1.5rem;margin-bottom:.45rem;}
+.legal-modal a{color:var(--green);text-decoration:underline;}
+.legal-modal a:hover{color:var(--pink-dark);}
 
 /* LEADERSHIP */
 .sec-lead{background:var(--pink-light);}
@@ -188,17 +192,6 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 .footer-links a:hover{opacity:1;}
 .footer-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;opacity:.9;}
 
-/* LEGAL PAGES */
-#privacy-page,#terms-page{background:var(--green-pale);min-height:100vh;}
-.legal-page{padding:100px 2rem 5rem;max-width:760px;margin:0 auto;min-height:100vh;}
-.legal-page .page-title{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--green-dark);margin-bottom:.4rem;}
-.legal-page .updated{font-size:.85rem;color:var(--text-soft);margin-bottom:2.5rem;}
-.legal-page h2{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--pink-dark);margin-top:2rem;margin-bottom:.6rem;}
-.legal-page p{font-size:.95rem;line-height:1.8;color:var(--text-soft);margin-bottom:.8rem;}
-.legal-page a{color:var(--green);text-decoration:underline;}
-.back-btn{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:2rem;font-size:.88rem;font-weight:500;color:var(--green-dark);cursor:pointer;background:var(--green-light);border:none;border-radius:99px;padding:.4rem 1rem;transition:background .2s;}
-.back-btn:hover{background:var(--green);}
-
 @media(max-width:768px){
   .proj-grid{grid-template-columns:1fr 1fr;}
   nav{padding:0 1.2rem;}
@@ -226,7 +219,9 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
   section{padding:3rem 1.5rem;}
   .skills-grid{grid-template-columns:1fr;}
   footer{flex-direction:column;text-align:center;}
-  .footer-links{justify-content:center;}
+  .footer-links{justify-content:center;margin:0;}
+  .modal-box{padding:1.8rem 1.4rem;}
+  .modal-close{margin:-.8rem -.6rem 0 0;}
 }
 @media(max-width:480px){.proj-grid{grid-template-columns:1fr;}}
 </style>
@@ -234,24 +229,24 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 <body>
 
 <nav>
-  <a class="nav-logo" onclick="showPage('main')" href="#">Ines Nix</a>
+  <a class="nav-logo" href="#home" onclick="closeMenu()">Ines Nix</a>
   <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#education" onclick="handleNavClick()">Education</a></li>
-    <li><a href="#experience" onclick="handleNavClick()">Experience</a></li>
-    <li><a href="#projects" onclick="handleNavClick()">Projects</a></li>
-    <li><a href="#leadership" onclick="handleNavClick()">Leadership</a></li>
-    <li><a href="#certifications" onclick="handleNavClick()">Certifications</a></li>
-    <li><a href="#contact" onclick="handleNavClick()">Contact</a></li>
+    <li><a href="#education" onclick="closeMenu()">Education</a></li>
+    <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+    <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+    <li><a href="#leadership" onclick="closeMenu()">Leadership</a></li>
+    <li><a href="#certifications" onclick="closeMenu()">Certifications</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
   </ul>
 </nav>
 
-<!-- MODAL -->
+<!-- MODAL (used for projects AND privacy/terms) -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal-box" id="modal-box">
-    <button class="modal-close" onclick="closeModalBtn()">×</button>
+  <div class="modal-box" id="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close" onclick="closeModalBtn()" aria-label="Close">×</button>
     <div id="modal-gallery-slot"></div>
     <div id="modal-content"></div>
   </div>
@@ -595,7 +590,6 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
         <span class="skill-tag">Breadboard Prototyping</span>
       </div>
     </div>
-    </div>
   </div>
 </section>
 
@@ -613,84 +607,80 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 
 </div><!-- end main-page -->
 
-<!-- ═══════════ PRIVACY PAGE ═══════════ -->
-<div id="privacy-page">
-  <div class="legal-page">
-    <button class="back-btn" onclick="showPage('main')">← Back</button>
-    <h1 class="page-title">Privacy Policy</h1>
-    <p class="updated">Last updated: April 2026</p>
-    <h2>Your Privacy</h2>
+<!-- ═══════════ PRIVACY POLICY  ═══════════ -->
+<template id="privacy-tpl">
+  <div class="legal-modal">
+    <h3>Privacy Policy</h3>
+    <p class="updated">Last updated: October 2026</p>
+    <h4>Your Privacy</h4>
     <p>Included below is my policy on how I handle any information I receive from you. You are not required to provide me with information in order to use this website. If you do not want me accessing and/or using your personal information as described herein, please do not provide me with any.</p>
-    <h2>Changes in My Policy</h2>
+    <h4>Changes in My Policy</h4>
     <p>I reserve the right to change this Privacy Policy at my discretion. If I decide to change the Privacy Policy, I will post those changes here. I encourage you to visit this area frequently to stay informed. If you continue to visit this website and use the services made available to you after such changes have been made, you hereby provide your consent to the changes.</p>
-    <h2>Copyright</h2>
+    <h4>Copyright</h4>
     <p>© Ines Nix 2026. All rights reserved. All content on this website, including text, graphics, images, and design, is the property of Ines Nix unless otherwise stated and is protected by United States copyright laws. No content may be reproduced, distributed, modified, or used without prior written permission.</p>
-    <h2>Digital Millennium Copyright Act (DMCA) Notice</h2>
+    <h4>Digital Millennium Copyright Act (DMCA) Notice</h4>
     <p>I own, protect, and enforce copyright in my own creative materials and respect the copyright properties of others. My site contains material of third parties and links to third-party sites. To the best of my knowledge, these materials do not infringe the copyrights of others. Upon receipt of notice of claimed infringement, I will respond expeditiously, including removing or disabling access to materials claimed to be infringing where applicable. Please address any notices to: <a href="mailto:inessnix@gmail.com">inessnix@gmail.com</a></p>
-    <h2>Restrictions on Use</h2>
+    <h4>Restrictions on Use</h4>
     <p>You agree not to use this website in any way that could damage, disable, or impair the site or interfere with any other party's use. You may not attempt to gain unauthorized access to any portion of the site or use it for any unlawful purpose. You may not reproduce, distribute, or create derivative works from any content without prior written permission.</p>
-    <h2>Information Collection</h2>
+    <h4>Information Collection</h4>
     <p>I collect personally identifiable information (such as your name and email address) that you provide through the contact form, and use it only to respond to your inquiry. This data is processed by Formspree and GitHub. To request deletion, email <a href="mailto:inessnix@gmail.com">inessnix@gmail.com</a> with the subject line: <em>Opt-out</em>.</p>
-    <h2>Google Fonts</h2>
+    <h4>Google Fonts</h4>
     <p>This website uses Google Fonts, which may collect technical information such as your IP address when fonts are loaded. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> for details.</p>
-    <h2>Cookies</h2>
+    <h4>Cookies</h4>
     <p>I do not use cookies directly. Third-party providers including Formspree, GitHub, and Google may use cookies as part of their services. You can manage cookies through your browser settings.</p>
-    <h2>Security</h2>
+    <h4>Security</h4>
     <p>Contact form submissions are processed by Formspree using industry-standard security. No method of Internet transmission is completely secure, and I cannot guarantee absolute security of submitted information.</p>
-    <h2>Use of Information</h2>
+    <h4>Use of Information</h4>
     <p>Email addresses submitted through the contact form are used solely to respond to the inquiry submitted.</p>
-    <h2>Opt-Out</h2>
+    <h4>Opt-Out</h4>
     <p>To stop receiving communications, email <a href="mailto:inessnix@gmail.com">inessnix@gmail.com</a> requesting removal. There may be a brief processing delay.</p>
-    <h2>Links to Other Websites</h2>
+    <h4>Links to Other Websites</h4>
     <p>This site may link to external websites. I am not responsible for their privacy practices. This Privacy Policy applies only to information collected through this website.</p>
-    <h2>Protection for Children</h2>
-    <p>I do not knowingly collect personal information from children under 13. If a child has submitted information, a parent or guardian may contact me at the address below to request deletion.</p>
-    <h2>Your Consent</h2>
+    <h4>Your Consent</h4>
     <p>By using this site, you agree to this Privacy Policy. If you do not agree, please do not use the site or submit personal information.</p>
-    <h2>International Users</h2>
+    <h4>International Users</h4>
     <p>If you access this site from outside the United States, your information may be processed in the U.S. by Formspree, GitHub, and Google. By using this site, you consent to this transfer.</p>
-    <h2>How to Contact Me</h2>
+    <h4>How to Contact Me</h4>
     <p><a href="mailto:inessnix@gmail.com">inessnix@gmail.com</a></p>
   </div>
-</div>
+</template>
 
-<!-- ═══════════ TERMS PAGE ═══════════ -->
-<div id="terms-page">
-  <div class="legal-page">
-    <button class="back-btn" onclick="showPage('main')">← Back to site</button>
-    <h1 class="page-title">Terms of Use</h1>
+<!-- ═══════════ TERMS OF USE ═══════════ -->
+<template id="terms-tpl">
+  <div class="legal-modal">
+    <h3>Terms of Use</h3>
     <p class="updated">Last updated: April 2026</p>
-    <h2>Acceptance of Terms</h2>
+    <h4>Acceptance of Terms</h4>
     <p>By accessing this website, you agree to these Terms of Use. This is a personal portfolio maintained by Ines Nix for academic, professional, and informational purposes.</p>
-    <h2>Permitted Use</h2>
+    <h4>Permitted Use</h4>
     <p>You agree to use this website only for lawful purposes. Automated scraping, crawling, or bulk data collection without permission is prohibited.</p>
-    <h2>Intellectual Property</h2>
+    <h4>Intellectual Property</h4>
     <p>All content — including text, images, project descriptions, and design — is the property of Ines Nix unless otherwise stated. You may not reproduce, distribute, or create derivative works without prior written permission.</p>
-    <h2>Academic &amp; Research Use</h2>
+    <h4>Academic &amp; Research Use</h4>
     <p>Content related to academic coursework and research at Washington University in St. Louis and University College Dublin is presented for informational purposes only. Users are responsible for complying with their own institution's academic integrity guidelines.</p>
-    <h2>Attribution</h2>
+    <h4>Attribution</h4>
     <p>If referencing data or project work from this site in academic publications, please cite the appropriate scientific sources and acknowledge this website where relevant. For computational biology work, cite the underlying FoldX and MutateX publications.</p>
-    <h2>Data Accuracy</h2>
+    <h4>Data Accuracy</h4>
     <p>No guarantees are made regarding the completeness or reliability of content. Users should independently verify information before relying on it.</p>
-    <h2>Contact Form</h2>
+    <h4>Contact Form</h4>
     <p>The contact form is powered by Formspree. By submitting, you agree to <a href="https://formspree.io/legal/terms-of-service/" target="_blank" rel="noopener">Formspree's Terms of Service</a>.</p>
-    <h2>No Warranties</h2>
+    <h4>No Warranties</h4>
     <p>This website is provided "as is" without warranties of any kind. I make no guarantees regarding functionality, availability, or accuracy.</p>
-    <h2>Limitation of Liability</h2>
+    <h4>Limitation of Liability</h4>
     <p>I am not liable for any damages resulting from use of this website or reliance on its content.</p>
-    <h2>Changes to These Terms</h2>
+    <h4>Changes to These Terms</h4>
     <p>I reserve the right to update these Terms at any time. Continued use after changes constitutes acceptance.</p>
-    <h2>Contact</h2>
+    <h4>Contact</h4>
     <p><a href="mailto:inessnix@gmail.com">inessnix@gmail.com</a></p>
   </div>
-</div>
+</template>
 
 <!-- FOOTER -->
 <footer>
   <span class="footer-name">Ines Nix</span>
   <div class="footer-links">
-    <a onclick="showPage('privacy')">Privacy Policy</a>
-    <a onclick="showPage('terms')">Terms of Use</a>
+    <a href="#" onclick="openLegal('privacy');return false;">Privacy Policy</a>
+    <a href="#" onclick="openLegal('terms');return false;">Terms of Use</a>
   </div>
   <span class="footer-copy">© Ines Nix 2026. All rights reserved.</span>
 </footer>
@@ -719,10 +709,6 @@ function closeMenu() {
   document.getElementById('nav-links').classList.remove('open');
   document.getElementById('nav-burger').classList.remove('open');
   document.getElementById('nav-burger').setAttribute('aria-expanded', 'false');
-}
-function handleNavClick() {
-  showPage('main');
-  closeMenu();
 }
 
 const projects = {
@@ -858,6 +844,13 @@ const projects = {
 let galleryImages = [];
 let galleryIndex = 0;
 
+// Shared helper: show the modal and start it scrolled to the top
+function showModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+  document.getElementById('modal-box').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
 function openModal(key) {
   const p = projects[key];
   galleryImages = p.images || [];
@@ -883,8 +876,17 @@ function openModal(key) {
   document.getElementById('modal-gallery-slot').innerHTML = galleryHTML;
   document.getElementById('modal-content').innerHTML =
     `<h3>${p.title}</h3><div class="modal-meta">${p.meta}</div>${tagsHtml}${p.body}`;
-  document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  showModal();
+}
+
+// Privacy Policy / Terms of Use pop-ups
+function openLegal(which) {
+  const tpl = document.getElementById(which + '-tpl');
+  if (!tpl) return;
+  galleryImages = [];
+  document.getElementById('modal-gallery-slot').innerHTML = '';
+  document.getElementById('modal-content').innerHTML = tpl.innerHTML;
+  showModal();
 }
 
 function shiftGallery(dir) {
@@ -910,18 +912,13 @@ function closeModalBtn() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
-
-function showPage(page) {
-  document.getElementById('main-page').style.display = 'none';
-  document.getElementById('privacy-page').style.display = 'none';
-  document.getElementById('terms-page').style.display = 'none';
-  if (page === 'main') document.getElementById('main-page').style.display = 'block';
-  else if (page === 'privacy') document.getElementById('privacy-page').style.display = 'block';
-  else if (page === 'terms') document.getElementById('terms-page').style.display = 'block';
-  window.scrollTo(0, 0);
+function closeCert(e) {
+  if (e.target === document.getElementById('cert-overlay')) {
+    document.getElementById('cert-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 }
-showPage('main');
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
 
 function handleSubmit(e) {
   e.preventDefault();
