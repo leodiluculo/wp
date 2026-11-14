@@ -121,30 +121,6 @@ section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:2.5
 .gallery-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:background .15s;}
 .gallery-dot.active{background:#fff;}
 
-/* CERT LIGHTBOX */
-.cert-overlay{position:fixed;inset:0;background:rgba(52,76,61,.6);z-index:3000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
-.cert-overlay.open{opacity:1;pointer-events:all;}
-.cert-overlay img{max-width:90vw;max-height:85vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
-.cert-close{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:2rem;color:#fff;cursor:pointer;line-height:1;}
-
-/* CERTIFICATIONS */
-.sec-cert{background:#fff;}
-.sec-cert h2{color:var(--green-dark);}
-.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
-.cert-card{background:var(--cream);border:1.5px solid var(--green-light);border-radius:var(--radius);padding:1.4rem 1.6rem;}
-.cert-card h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--green-dark);margin-bottom:.35rem;}
-.cert-card .cert-issuer{font-size:.82rem;color:var(--text-soft);font-weight:500;margin-bottom:.9rem;}
-.cert-status{display:block;font-size:.8rem;font-weight:500;letter-spacing:.03em;margin-bottom:.9rem;}
-.cert-status.completed{color:var(--green);}
-.cert-status.in-progress{color:var(--pink-dark);}
-.cert-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.84rem;font-weight:500;color:var(--green-dark);text-decoration:none;border-bottom:1.5px solid var(--green);padding-bottom:1px;transition:color .2s;}
-.cert-link:hover{color:var(--pink-dark);border-color:var(--pink-dark);}
-.progress-wrap{margin-top:.75rem;}
-.progress-label{display:flex;justify-content:space-between;font-size:.78rem;color:var(--text-soft);margin-bottom:.35rem;}
-.progress-bar{height:7px;background:var(--pink-light);border-radius:99px;overflow:hidden;}
-.progress-fill{height:100%;background:var(--green);border-radius:99px;transition:width .4s ease;}
-@media(max-width:600px){.cert-grid{grid-template-columns:1fr;}}
-
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(52,76,61,.45);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
 .modal-overlay.open{opacity:1;pointer-events:all;}
@@ -228,7 +204,6 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
     <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
     <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
     <li><a href="#leadership" onclick="closeMenu()">Leadership</a></li>
-    <li><a href="#certifications" onclick="closeMenu()">Certifications</a></li>
     <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
     <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
   </ul>
@@ -241,12 +216,6 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
     <div id="modal-gallery-slot"></div>
     <div id="modal-content"></div>
   </div>
-</div>
-
-<!-- CERT LIGHTBOX -->
-<div class="cert-overlay" id="cert-overlay" onclick="closeCert(event)">
-  <button class="cert-close" onclick="document.getElementById('cert-overlay').classList.remove('open');document.body.style.overflow=''">×</button>
-  <img id="cert-img" src="" alt="Certificate of Completion"/>
 </div>
 
 <!-- ═══════════ MAIN PAGE ═══════════ -->
@@ -506,42 +475,6 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
-<section class="sec-cert" id="certifications">
-  <h2>Certifications</h2>
-  <div class="cert-grid">
-
-    <div class="cert-card">
-      <h3>Generative AI Literacy</h3>
-      <div class="cert-issuer">Washington University in St. Louis · 2026</div>
-      <div class="cert-status completed">✓ Completed</div>
-    </div>
-
-    <div class="cert-card">
-      <h3>CompTIA A+ Core 1 (220-1201)</h3>
-      <div class="cert-issuer">CompTIA · via LinkedIn Learning</div>
-      <div class="cert-status in-progress">⋯ Exam prep in progress</div>
-      <div class="progress-wrap">
-        <div class="progress-label"><span>Course progress</span><span id="prog-pct-1">0%</span></div>
-        <div class="progress-bar"><div class="progress-fill" id="prog-fill-1" style="width:0%"></div></div>
-      </div>
-      <br/><a class="cert-link" href="https://www.linkedin.com/learning/comptia-a-plus-core-1-220-1201-cert-prep/touring-a-pc" target="_blank" rel="noopener">View course on LinkedIn ↗</a>
-    </div>
-
-    <div class="cert-card">
-      <h3>CompTIA A+ Core 2 (220-1202)</h3>
-      <div class="cert-issuer">CompTIA · via LinkedIn Learning</div>
-      <div class="cert-status in-progress">⋯ Exam prep in progress</div>
-      <div class="progress-wrap">
-        <div class="progress-label"><span>Course progress</span><span id="prog-pct-2">0%</span></div>
-        <div class="progress-bar"><div class="progress-fill" id="prog-fill-2" style="width:0%"></div></div>
-      </div>
-      <br/><a class="cert-link" href="https://www.linkedin.com/learning/comptia-a-plus-core-2-220-1202-cert-prep/what-s-on-the-comptia-a-plus-core-2-220-1202-exam?u=57884865" target="_blank" rel="noopener">View course on LinkedIn ↗</a>
-    </div>
-
-  </div>
-</section>
-
 <!-- SKILLS -->
 <section class="sec-skills" id="skills">
   <h2>Skills &amp; Experience</h2>
@@ -695,16 +628,6 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 </footer>
 
 <script>
-
-// CERT PROGRESS
-const COMPTIA_CORE1_PROGRESS = 3.17;
-const COMPTIA_CORE2_PROGRESS = 0;
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('prog-fill-1').style.width = COMPTIA_CORE1_PROGRESS + '%';
-  document.getElementById('prog-pct-1').textContent = COMPTIA_CORE1_PROGRESS + '%';
-  document.getElementById('prog-fill-2').style.width = COMPTIA_CORE2_PROGRESS + '%';
-  document.getElementById('prog-pct-2').textContent = COMPTIA_CORE2_PROGRESS + '%';
-});
 
 // MOBILE NAV MENU
 function toggleMenu() {
@@ -925,12 +848,6 @@ function closeModal(e) {
 function closeModalBtn() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
-}
-function closeCert(e) {
-  if (e.target === document.getElementById('cert-overlay')) {
-    document.getElementById('cert-overlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
 
