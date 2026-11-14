@@ -27,9 +27,13 @@ body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--text);overflow
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:58px;background:var(--nav-bg);border-bottom:1.5px solid var(--pink-light);backdrop-filter:blur(8px);}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--green-dark);text-decoration:none;letter-spacing:0.01em;cursor:pointer;}
-.nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{text-decoration:none;font-size:0.9rem;font-weight:500;color:var(--green-dark);transition:color 0.2s;letter-spacing:0.02em;}
-.nav-links a:hover{color:var(--pink);}
+/* Dropdown menu (opened by the three-line button) */
+.nav-links{position:fixed;top:58px;right:2.5rem;width:230px;list-style:none;display:flex;flex-direction:column;background:var(--nav-bg);border:1.5px solid var(--pink-light);border-top:none;border-radius:0 0 var(--radius) var(--radius);box-shadow:0 12px 24px rgba(52,76,61,.10);max-height:0;overflow:hidden;opacity:0;pointer-events:none;transition:max-height .3s ease,opacity .25s ease;z-index:1001;}
+.nav-links.open{max-height:500px;opacity:1;pointer-events:all;}
+.nav-links li{width:100%;}
+.nav-links li:first-child a{border-top:none;}
+.nav-links a{display:block;padding:.8rem 1.4rem;border-top:1px solid var(--green-light);text-decoration:none;font-size:0.95rem;font-weight:500;color:var(--green-dark);transition:color 0.2s,background 0.2s;letter-spacing:0.02em;}
+.nav-links a:hover{color:var(--pink);background:#fff;}
 
 .green-link {
   color: var(--green-dark);
@@ -39,22 +43,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
   color: var(--pink);
 }
 
-.nav-burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:0;z-index:1002;}
+.nav-burger{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:0;z-index:1002;}
 .nav-burger span{display:block;width:22px;height:2px;background:var(--green-dark);border-radius:2px;transition:transform .25s ease,opacity .25s ease;}
 .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .nav-burger.open span:nth-child(2){opacity:0;}
 .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
 /* HERO */
-.hero{min-height:100vh;background:var(--pink-light);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 3rem 3rem;position:relative;overflow:hidden;text-align:center;}
+.hero{min-height:100vh;background:var(--pink-light);display:flex;flex-direction:row;align-items:center;justify-content:center;gap:3rem;padding:90px 3rem 3rem;position:relative;overflow:hidden;text-align:left;}
 .hero-card{background:rgba(255,255,255,.88);border-radius:20px;padding:2.5rem 3rem;max-width:620px;width:100%;position:relative;z-index:2;box-shadow:0 8px 40px rgba(130,150,114,.12),0 2px 8px rgba(216,149,155,.10);backdrop-filter:blur(10px);}
 .hero-card h1{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--green-dark);margin-bottom:1rem;}
 .hero-card p{font-size:1rem;line-height:1.85;color:var(--text-soft);margin-bottom:1.6rem;}
+/* PORTRAIT (follows the mouse) */
+.portrait{flex:0 0 auto;width:min(520px,42vw);aspect-ratio:1/1;}
+.portrait canvas{width:100% !important;height:100% !important;display:block;}
+@media(max-width:900px){.hero{flex-direction:column;gap:1.2rem;text-align:center;}.portrait{width:min(320px,80vw);}}
 .email-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border-radius:99px;background:var(--green-dark);color:#fff;text-decoration:none;font-size:.92rem;font-weight:500;transition:background .2s,transform .15s;letter-spacing:.02em;}
 .email-btn:hover{background:var(--pink-dark);transform:translateY(-2px);}
 
 /* SHARED */
-section{padding:5rem 3rem;}
+section{padding:5rem 3rem;scroll-margin-top:58px;}
 section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:2.5rem;}
 
 /* EDUCATION */
@@ -164,7 +172,7 @@ section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:2.5
 /* SKILLS */
 .sec-skills{background:var(--green-pale);}
 .sec-skills h2{color:var(--green-dark);}
-.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
 .skill-block{background:#fff;border:1.5px solid var(--green-light);border-radius:var(--radius);padding:1.4rem 1.6rem;}
 .skill-block h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--green-dark);padding-bottom:.6rem;margin-bottom:.4rem;border-bottom:1.5px solid var(--pink-light);}
 .skill-list{list-style:none;columns:2;column-gap:1.2rem;}
@@ -195,26 +203,8 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 @media(max-width:768px){
   .proj-grid{grid-template-columns:1fr 1fr;}
   nav{padding:0 1.2rem;}
-  .nav-burger{display:flex;}
-  .nav-links{
-    position:fixed;
-    top:58px;
-    left:0;
-    right:0;
-    flex-direction:column;
-    gap:0;
-    background:var(--nav-bg);
-    border-bottom:1.5px solid var(--pink-light);
-    box-shadow:0 12px 24px rgba(52,76,61,.10);
-    max-height:0;
-    overflow:hidden;
-    opacity:0;
-    transition:max-height .3s ease,opacity .25s ease;
-    z-index:1001;
-  }
-  .nav-links.open{max-height:400px;opacity:1;}
-  .nav-links li{width:100%;}
-  .nav-links a{display:block;padding:.95rem 1.5rem;border-top:1px solid var(--green-light);font-size:1rem;}
+  .nav-links{left:0;right:0;width:auto;border-left:none;border-right:none;border-radius:0;}
+  .nav-links a{padding:.95rem 1.5rem;font-size:1rem;}
   .hero{padding:80px 1.5rem 3rem;}
   section{padding:3rem 1.5rem;}
   .skills-grid{grid-template-columns:1fr;}
@@ -239,6 +229,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
     <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
     <li><a href="#leadership" onclick="closeMenu()">Leadership</a></li>
     <li><a href="#certifications" onclick="closeMenu()">Certifications</a></li>
+    <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
     <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
   </ul>
 </nav>
@@ -262,6 +253,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 <div id="main-page">
 
 <section class="hero" id="home">
+  <div id="portrait" class="portrait" aria-label="Illustrated portrait of Ines whose eyes follow the cursor" role="img"></div>
   <div class="hero-card">
     <h1>Ines Nix</h1>
     <p>Hi, I’m Ines, and I’m a Computer Engineering undergraduate student in my final semester at Washington University in St. Louis! While pursuing my degree, I’ve had the opportunity to explore several of my interests, including biomedical applications of technology, cybersecurity, and environmental analysis. I’m excited to bring my STEM background into the workforce and apply what I’ve learned to meaningful problems. I’m passionate about the projects I take on and always looking for opportunities to learn and expand my perspective.</p>
@@ -537,7 +529,7 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
     </div>
 
     <div class="cert-card">
-      <h3>CompTIA A+ Core 1 (220-1201)</h3>
+      <h3>CompTIA A+ Core 2 (220-1202)</h3>
       <div class="cert-issuer">CompTIA · via LinkedIn Learning</div>
       <div class="cert-status in-progress">⋯ Exam prep in progress</div>
       <div class="progress-wrap">
@@ -554,6 +546,19 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
 <section class="sec-skills" id="skills">
   <h2>Skills &amp; Experience</h2>
   <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Security &amp; IT</h4>
+      <ul class="skill-list">
+        <li>Microsoft Intune</li>
+        <li>Microsoft Entra ID</li>
+        <li>Microsoft Defender</li>
+        <li>Microsoft Graph API</li>
+        <li>PowerShell</li>
+        <li>Power BI (DAX)</li>
+        <li>VMware</li>
+        <li>Wireshark</li>
+      </ul>
+    </div>
     <div class="skill-block">
       <h4>Programming &amp; Hardware Description Languages </h4>
       <ul class="skill-list">
@@ -576,11 +581,10 @@ footer{background:var(--footer-bg);color:var(--footer-text);padding:1.8rem 3rem;
         <li>RStudio</li>
         <li>GitHub</li>
         <li>Docker</li>
-        <li>VMware</li>
+        <li>Linux/Bash</li>
         <li>KiCad</li>
         <li>NI Multisim</li>
         <li>PSpice</li>
-        <li>Wireshark</li>
         <li>ESRI ArcGIS Pro</li>
         <li>LTspice</li>
       </ul>
@@ -715,6 +719,12 @@ function closeMenu() {
   document.getElementById('nav-burger').classList.remove('open');
   document.getElementById('nav-burger').setAttribute('aria-expanded', 'false');
 }
+// Close the menu when clicking anywhere outside it
+document.addEventListener('click', function(e) {
+  const links = document.getElementById('nav-links');
+  const burger = document.getElementById('nav-burger');
+  if (links.classList.contains('open') && !links.contains(e.target) && !burger.contains(e.target)) closeMenu();
+});
 
 const projects = {
   picar: {
@@ -939,5 +949,370 @@ function handleSubmit(e) {
   });
 }
 </script>
+<script>
+// ===== follow the mouse portrait =====
+(function () {
+
+const el = document.getElementById('portrait');
+const cv = document.createElement('canvas');
+el.appendChild(cv);
+const ctx = cv.getContext('2d');
+const SIZE = 600;
+const p = {
+  width: SIZE, height: SIZE, mouseX: 0, mouseY: 0,
+  CLOSE: 'close', OPEN: 'open', ROUND: 'round',
+  _s: { fill: '#ffffff', stroke: '#000000', sw: 1, doFill: true, doStroke: true, join: 'miter' },
+  _stack: [], _path: null,
+  createCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    cv.width = SIZE * dpr; cv.height = SIZE * dpr;
+    this._dpr = dpr;
+  },
+  clear() { ctx.setTransform(this._dpr, 0, 0, this._dpr, 0, 0); ctx.clearRect(0, 0, SIZE, SIZE); },
+  background(c) { ctx.setTransform(this._dpr, 0, 0, this._dpr, 0, 0); ctx.fillStyle = c; ctx.fillRect(0, 0, SIZE, SIZE); },
+  fill(c) { this._s.fill = c; this._s.doFill = true; },
+  noFill() { this._s.doFill = false; },
+  stroke(c) { this._s.stroke = c; this._s.doStroke = true; },
+  noStroke() { this._s.doStroke = false; },
+  strokeWeight(w) { this._s.sw = w; },
+  strokeJoin(j) { this._s.join = j; },
+  push() { this._stack.push(Object.assign({}, this._s)); ctx.save(); },
+  pop() { this._s = this._stack.pop(); ctx.restore(); },
+  translate(x, y) { ctx.translate(x, y); },
+  rotate(a) { ctx.rotate(a); },
+  radians(d) { return d * Math.PI / 180; },
+  _paint(closeStroke) {
+    const s = this._s;
+    if (s.doFill) { ctx.fillStyle = s.fill; ctx.fill(); }
+    if (s.doStroke) {
+      if (closeStroke) ctx.closePath();
+      ctx.strokeStyle = s.stroke; ctx.lineWidth = s.sw; ctx.lineJoin = s.join; ctx.lineCap = 'round';
+      ctx.stroke();
+    }
+  },
+  ellipse(x, y, w, h) { ctx.beginPath(); ctx.ellipse(x, y, w / 2, h / 2, 0, 0, Math.PI * 2); this._paint(false); },
+  circle(x, y, d) { this.ellipse(x, y, d, d); },
+  arc(x, y, w, h, a, b) {
+    const s = this._s;
+    const t = ang => Math.atan2(Math.sin(ang) * w, Math.cos(ang) * h);
+    let a2 = t(a), b2 = t(b); while (b2 <= a2) b2 += Math.PI * 2;
+    ctx.beginPath(); ctx.ellipse(x, y, w / 2, h / 2, 0, a2, b2);
+    if (s.doFill) { ctx.fillStyle = s.fill; ctx.fill(); }
+    if (s.doStroke) { ctx.strokeStyle = s.stroke; ctx.lineWidth = s.sw; ctx.lineJoin = s.join; ctx.lineCap = 'round'; ctx.stroke(); }
+  },
+  triangle(x1, y1, x2, y2, x3, y3) { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.lineTo(x3, y3); ctx.closePath(); this._paint(false); },
+  quad(x1, y1, x2, y2, x3, y3, x4, y4) { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.lineTo(x3, y3); ctx.lineTo(x4, y4); ctx.closePath(); this._paint(false); },
+  line(x1, y1, x2, y2) {
+    if (!this._s.doStroke) return;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+    ctx.strokeStyle = this._s.stroke; ctx.lineWidth = this._s.sw; ctx.lineCap = 'round'; ctx.stroke();
+  },
+  beginShape() { ctx.beginPath(); this._first = true; },
+  vertex(x, y) { if (this._first) { ctx.moveTo(x, y); this._first = false; } else ctx.lineTo(x, y); },
+  bezierVertex(a, b, c, d, e, f) { ctx.bezierCurveTo(a, b, c, d, e, f); },
+  endShape(mode) { this._paint(mode === 'close'); },
+  // 2D vectors
+  createVector(x, y) { return new Vec(x, y); },
+  sub(a, b) { return new Vec(a.x - b.x, a.y - b.y); }
+};
+function Vec(x, y) { this.x = x; this.y = y; }
+Vec.prototype.mult = function (k) { this.x *= k; this.y *= k; return this; };
+Vec.prototype.copy = function () { return new Vec(this.x, this.y); };
+Vec.prototype.limit = function (m) { const l = Math.hypot(this.x, this.y); if (l > m) { this.x *= m / l; this.y *= m / l; } return this; };
+
+// mouse position in the drawing's own 600×600 units
+function track(cx, cy) {
+  const r = cv.getBoundingClientRect();
+  p.mouseX = (cx - r.left) * SIZE / r.width;
+  p.mouseY = (cy - r.top) * SIZE / r.height;
+}
+window.addEventListener('mousemove', e => track(e.clientX, e.clientY));
+window.addEventListener('touchmove', e => track(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+
+// ---- the portrait drawing ----
+let backdrop = "#FFC7E3";
+let skin = "#FFD2B3";
+let hair = "#5C3A24";
+let outline = "#3A2416";
+let nose = "#F99386";
+let eye = "#B98250";
+let eyeOutline = "#7A4A22";
+let eyeWhite = "#F3E8DE";
+
+p.setup = function () {
+  p.createCanvas(600, 600);
+}
+  
+p.draw = function () {
+  p.clear();
+  face(p.width/2,p.height/2);
+}
+
+function face(x,y){
+  p.translate(x, y);
+
+  let center = p.createVector(x, y);
+  let mouse = p.createVector(p.mouseX, p.mouseY);
+  let move = p.sub(mouse, center);
+
+  move.mult(0.1);
+  move.limit(17);
+
+  let pupilMove = move.copy();
+  pupilMove.limit(14);
+
+  let eyeMove = move.copy();
+  eyeMove.mult(0.3);
+
+  let earMove = move.copy();
+  earMove.mult(-0.2);
+
+  let eyebrowMove = move.copy();
+  eyebrowMove.mult(0.5);
+
+  let hairMove = move.copy();
+  hairMove.mult(0.1);
+  
+  // hair rear
+  const hairLen = 225;
+  p.push();
+    p.translate(hairMove.x, hairMove.y);
+    p.fill(hair);
+    p.beginShape();
+      p.vertex(-250, -45);
+      p.bezierVertex(-230, -210, -70, -240, 0, -210);
+      p.bezierVertex(70, -240, 230, -210, 250, -45);
+      p.vertex(250, hairLen);
+      p.vertex(200, hairLen);
+      p.vertex(180, hairLen - 35);
+      p.vertex(160, hairLen);
+      p.vertex(-250, hairLen);
+      p.vertex(-250, -45);
+    p.endShape(p.CLOSE);
+  p.pop();
+
+  // face
+  p.strokeWeight(6);
+  p.stroke(outline);
+
+  // left ear
+  p.push();
+    p.translate(earMove.x, earMove.y);
+
+    // left ear 
+    p.translate(-235, 15);
+    p.rotate(p.radians(-30));
+    p.ellipse(0, 0, 110, 120);
+    p.arc(0, 0, 60, 60, p.radians(230), p.radians(50), p.OPEN);
+
+  p.pop();
+
+  // right ear
+  p.push();
+    p.translate(earMove.x, earMove.y);
+
+    p.translate(235, 15);
+    p.rotate(p.radians(30));
+    p.ellipse(0, 0, 110, 120);
+    p.arc(0, 0, 60, 60, p.radians(-230), p.radians(-50), p.OPEN);
+  p.pop();
+
+  p.fill(skin);
+  p.ellipse(0, 0, 450, 400);
+
+  // eye without outline
+  p.push();
+    p.translate(eyeMove.x, eyeMove.y);
+
+    p.fill(eyeWhite);
+    p.noStroke();
+
+    // left
+    p.beginShape();
+      p.vertex(-40, 30);
+      p.bezierVertex(-50, -35, -160, -60, -180, 10);
+      p.bezierVertex(-150, 90, -60, 60, -40, 30);
+    p.endShape(p.CLOSE);
+
+    //right
+    p.beginShape();
+      p.vertex(40, 30);
+      p.bezierVertex(50, -35, 160, -60, 180, 10);
+      p.bezierVertex(150, 90, 60, 60, 40, 30);
+    p.endShape(p.CLOSE);
+  p.pop();
+
+  // pupils
+ p.push();
+    p.translate(pupilMove.x, pupilMove.y);
+    p.fill(eye);
+    p.stroke(eyeOutline);
+    p.circle(-100, 8, 80); //left
+    p.circle(100, 8, 80); //right
+
+    p.push();
+      p.noStroke();
+      p.fill("#FFFFFF");
+      p.ellipse(-145, 0, 30, 15);
+      p.ellipse(145, 0, 30, 15);
+    p.pop();
+  p.pop();
+
+  // eye outline
+  p.push();
+    p.translate(eyeMove.x, eyeMove.y);
+    p.noFill();
+    p.stroke(eyeOutline);
+
+    // left
+    p.beginShape();
+      p.vertex(-40, 30);
+      p.bezierVertex(-50, -35, -160, -60, -180, 10);
+    p.endShape();
+
+    // right
+    p.beginShape();
+      p.vertex(40, 30);
+      p.bezierVertex(50, -35, 160, -60, 180, 10);
+    p.endShape();
+
+    // soft lower lid line
+    p.strokeWeight(3);
+    p.beginShape();
+      p.vertex(-180, 10);
+      p.bezierVertex(-150, 90, -60, 60, -40, 30);
+    p.endShape();
+    p.beginShape();
+      p.vertex(180, 10);
+      p.bezierVertex(150, 90, 60, 60, 40, 30);
+    p.endShape();
+  p.pop();
+
+  // eyelids
+  p.push();
+    p.translate(eyeMove.x, eyeMove.y);
+    p.noStroke();
+
+    // left top
+    p.beginShape();
+      //stroke(hair);
+      p.vertex(-37, 30);
+      p.bezierVertex(-50, -38, -160, -63, -183, 7); // bottom
+      p.bezierVertex(-160, -110, -30, -130, -37, 30); // top
+    p.endShape();
+
+    // left bottom
+    p.beginShape();
+      p.vertex(-183, 10);
+      p.bezierVertex(-153, 90, -63, 60, -37, 30);
+      p.bezierVertex(-60, 120, -150, 120, -183, 10);
+    p.endShape();
+
+    // right top
+    p.beginShape();
+      p.vertex(37, 30);
+      p.bezierVertex(50, -38, 160, -63, 183, 7);
+      p.bezierVertex(160, -110, 30, -130, 37, 30); // top
+    p.endShape();
+
+    // right bottom
+    p.beginShape();
+      p.vertex(183, 10);
+      p.bezierVertex(153, 90, 63, 60, 37, 30);
+      p.bezierVertex(60, 120, 150, 120, 183, 10);
+    p.endShape();
+  p.pop();
+
+
+  // nose
+  p.push();
+    p.translate(eyeMove.x, eyeMove.y);
+    p.strokeWeight(20);
+    p.strokeJoin(p.ROUND);
+    p.stroke(nose);
+    p.fill(nose);
+    p.triangle(-10, 80, 0, -15, 10, 80);
+    p.triangle(-15, 80, 0, 30, 15, 80);
+  p.pop();
+
+  // cheeks
+  p.push();
+    p.translate(eyeMove.x, eyeMove.y);
+    p.fill(nose);
+    p.noStroke();
+    p.ellipse(-145, 90, 60, 30);
+    p.ellipse(145, 90, 60, 30);
+  p.pop();
+
+  // mouth
+  p.push();
+    p.translate(eyeMove.x, eyeMove.y);
+    p.noFill();
+    p.strokeWeight(10);
+    p.stroke(nose);
+    p.arc(0, 110, 80, 30, p.radians(20), p.radians(160), p.OPEN);
+  p.pop();
+
+  // eyebrow
+  /*
+  p.push();
+    p.strokeJoin(p.ROUND);
+    p.strokeWeight(8);
+    p.fill(outline);
+    p.quad(75, -55, 125, -50, 75, -50, 50, -42);
+    //quad(-75, -55, -125, -50, -75, -50, -50, -42);
+  p.pop();
+  */
+  
+  // hair front
+  p.push();
+    p.fill(hair);
+    p.stroke(hair);
+    p.beginShape();
+      p.vertex(220, -45);
+      p.bezierVertex(115, -10,   120, -140,   0, -160); // right
+      p.bezierVertex(-115, -140,   -120, -10,   -220, -45); // left
+      p.bezierVertex(-180, -230,   150, -275,   220, -45); // top
+    p.endShape();
+  p.pop();
+
+  // hair outline
+  p.push();
+    p.noFill();
+    p.beginShape();
+      p.vertex(220, -45);
+      p.bezierVertex(115, -10, 120, -140, 0, -160); // right
+      p.bezierVertex(-115, -140, -120, -10, -220, -45); // left
+    p.endShape();
+    p.line(0, -210, 0, -160);
+    p.beginShape();
+      p.vertex(220, -45);
+      p.bezierVertex(115, 20, 120, -120, 0, -160);
+    p.endShape();
+  p.pop();
+
+  p.push();
+
+    p.translate(eyebrowMove.x, eyebrowMove.y);
+
+    p.noFill();
+    p.strokeWeight(7);
+
+    p.beginShape();
+      p.vertex(-45, -42);
+      p.bezierVertex(-55, -55, -95, -64, -140, -50);
+    p.endShape();
+
+    p.beginShape();
+      p.vertex(45, -42);
+      p.bezierVertex(55, -55, 95, -64, 140, -50);
+    p.endShape();
+  p.pop();
+  
+}
+
+p.setup();
+(function loop() { ctx.setTransform(p._dpr, 0, 0, p._dpr, 0, 0); p.draw(); requestAnimationFrame(loop); })();
+})();</script>
 </body>
 </html>
